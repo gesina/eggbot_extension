@@ -9,8 +9,8 @@ You have to put these two directories inside your ```~/.config/inkscape``` folde
 ```bash
 curl -L https://github.com/justinotherguy/eggbot_extension/archive/1.2.tar.gz | tar -xz
 mkdir -p ~/.config/inkscape
-cp -r eggbot_extension-1.1/templates ~/.config/inkscape
-cp -r eggbot_extension-1.1/extensions ~/.config/inkscape
+cp -r eggbot_extension-1.2/templates ~/.config/inkscape
+cp -r eggbot_extension-1.2/extensions ~/.config/inkscape
 ```
 
 ### Dependencies
