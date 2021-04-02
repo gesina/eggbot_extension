@@ -27,7 +27,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import inkex
-import simplepath
+from inkex.paths import Path
 from math import *
 
 import lxml.etree
@@ -359,7 +359,7 @@ class SpiroSine( inkex.Effect ):
 		style = { 'stroke': 'black', 'stroke-width': '1', 'fill': 'none' }
 		path_attrs = {
 			'style': str(inkex.Style( style )),
-			'd': simplepath.formatPath( path_data ),
+			'd': str(Path( path_data )),
 			inkex.addNS( 'desc', self.nsPrefix ): path_desc }
 		newpath = lxml.etree.SubElement( self.document.getroot(),
 			inkex.addNS( 'path', 'svg '), path_attrs, nsmap=inkex.NSS )

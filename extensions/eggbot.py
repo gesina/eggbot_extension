@@ -25,6 +25,7 @@ from simpletransform import *
 import gettext
 import inkex
 import simplepath
+from inkex.paths import Path
 import string
 import time
 import ebb_serial		# https://github.com/evil-mad/plotink
@@ -610,7 +611,7 @@ class EggBot( inkex.Effect ):
 						a.append( [' l ', [0, h]] )
 						a.append( [' l ', [-w, 0]] )
 						a.append( [' Z', []] )
-						newpath.set( 'd', simplepath.formatPath( a ) )
+						newpath.set( 'd', str(Path( a )) )
 						self.plotPath( newpath, matNew )
 						if ( not self.bStopped ):	#an "index" for resuming plots quickly-- record last complete path
 							self.svgLastPath += 1
@@ -651,7 +652,7 @@ class EggBot( inkex.Effect ):
 						a = []
 						a.append( ['M ', [x1, y1]] )
 						a.append( [' L ', [x2, y2]] )
-						newpath.set( 'd', simplepath.formatPath( a ) )
+						newpath.set( 'd', str(Path( a )) )
 						self.plotPath( newpath, matNew )
 						if ( not self.bStopped ):	#an "index" for resuming plots quickly-- record last complete path
 							self.svgLastPath += 1

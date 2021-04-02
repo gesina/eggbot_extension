@@ -105,6 +105,7 @@
 
 import inkex
 import simplepath
+from inkex.paths import Path
 import simpletransform
 
 import cubicsuperpath
@@ -904,7 +905,7 @@ class Eggbot_Hatch( inkex.Effect ):
 				a.append( [' l ', [0, h]] )
 				a.append( [' l ', [-w, 0]] )
 				a.append( [' Z', []] )
-				self.addPathVertices( simplepath.formatPath( a ), node, matNew )
+				self.addPathVertices( str(Path( a )), node, matNew )
 				# We now have a path we want to apply a (cross)hatch to
 				# Apply appropriate functions
 				bHaveGrid = self.makeHatchGrid( float( self.options.hatchAngle ),float( self.options.hatchSpacing ), True )
@@ -940,7 +941,7 @@ class Eggbot_Hatch( inkex.Effect ):
 				a = []
 				a.append( ['M ', [x1, y1]] )
 				a.append( [' L ', [x2, y2]] )
-				self.addPathVertices( simplepath.formatPath( a ), node, matNew )
+				self.addPathVertices( str(Path( a )), node, matNew )
 				# We now have a path we want to apply a (cross)hatch to
 				# Apply appropriate functions
 				bHaveGrid = self.makeHatchGrid( float( self.options.hatchAngle ),float( self.options.hatchSpacing ), True )

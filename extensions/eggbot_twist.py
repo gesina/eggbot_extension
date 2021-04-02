@@ -33,6 +33,7 @@
 
 import inkex
 import simplepath
+from inkex.paths import Path
 
 import simpletransform
 import cubicsuperpath
@@ -305,7 +306,7 @@ class Twist( inkex.Effect ):
 				a.append( [' l ', [0, h]] )
 				a.append( [' l ', [-w, 0]] )
 				a.append( [' Z', []] )
-				self.addPathVertices( simplepath.formatPath( a ), node, matNew, cloneTransform )
+				self.addPathVertices( str(Path( a )), node, matNew, cloneTransform )
 
 			elif node.tag == inkex.addNS( 'line', 'svg' ) or node.tag == 'line':
 
@@ -326,7 +327,7 @@ class Twist( inkex.Effect ):
 				a = []
 				a.append( ['M ', [x1, y1]] )
 				a.append( [' L ', [x2, y2]] )
-				self.addPathVertices( simplepath.formatPath( a ), node, matNew, cloneTransform )
+				self.addPathVertices( str(Path( a )), node, matNew, cloneTransform )
 
 			elif node.tag == inkex.addNS( 'polyline', 'svg' ) or node.tag == 'polyline':
 
