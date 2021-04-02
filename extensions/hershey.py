@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 import hersheydata          #data file w/ Hershey font data
 import inkex
-import simplestyle
+
 
 import lxml.etree
 
@@ -43,7 +43,7 @@ def draw_svg_text(char, face, offset, vertoffset, parent):
     if splitpoint > 0:
         pathString = pathString[splitpoint:] #portion after first move
         trans = 'translate(' + str(midpoint) + ',' + str(vertoffset) + ')'
-        text_attribs = {'style':simplestyle.formatStyle(style), 'd':pathString, 'transform':trans}
+        text_attribs = {'style':str(inkex.Style(style)), 'd':pathString, 'transform':trans}
         lxml.etree.SubElement(parent, inkex.addNS('path','svg'), text_attribs)
     return midpoint + float(splitString[1])   #new offset value
 

@@ -82,14 +82,14 @@ def draw_SVG_path( pts, c, t, parent ):
 	else:
 		return
 	style = { 'stroke':c, 'stroke-width':str( t ), 'fill':'none' }
-	line_attribs = { 'style':simplestyle.formatStyle( style ),'d':d }
+	line_attribs = { 'style':str(inkex.Style( style )),'d':d }
 	lxml.etree.SubElement( parent, inkex.addNS( 'path','svg' ), line_attribs )
 
 # Add a SVG rect element to the document
 
 def draw_SVG_rect( x, y, w, h, c, t, fill, parent ):
 	style = { 'stroke':c, 'stroke-width':str( t ), 'fill':fill }
-	rect_attribs = { 'style':simplestyle.formatStyle( style ),
+	rect_attribs = { 'style':str(inkex.Style( style )),
 					  'x':str( x ), 'y':str( y ),
 					  'width':str( w ), 'height':str( h ) }
 	lxml.etree.SubElement( parent, inkex.addNS( 'rect', 'svg' ),

@@ -75,7 +75,7 @@ class EggBot_PostProcessTraceBitmap( inkex.Effect ):
 			style['stroke'] = stroke
 
 			# And change the style attribute for the path
-			path.set( 'style', simplestyle.formatStyle( style ) )
+			path.set( 'style', str(inkex.Style( style ) ))
 
 			# Create a group <g> element under the document root
 			layer = lxml.etree.SubElement( root, inkex.addNS( 'g', 'svg' ) )

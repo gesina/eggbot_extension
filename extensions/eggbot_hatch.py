@@ -106,7 +106,7 @@
 import inkex
 import simplepath
 import simpletransform
-import simplestyle
+
 import cubicsuperpath
 import cspsubdiv
 import bezmisc
@@ -1139,7 +1139,7 @@ class Eggbot_Hatch( inkex.Effect ):
 			# if style != 'none':
 		finally:
 			style = { 'stroke': '%s' % stroke_color, 'fill': 'none', 'stroke-width': '%s' % stroke_width }
-			line_attribs = { 'style':simplestyle.formatStyle( style ), 'd': path }
+			line_attribs = { 'style':str(inkex.Style( style )), 'd': path }
 			tran = node.get( 'transform' )
 			if ( tran != None ) and ( tran != '' ):
 				line_attribs['transform'] = tran

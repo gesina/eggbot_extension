@@ -20,7 +20,7 @@
 import math
 import inkex
 import simplepath
-import simplestyle
+
 import simpletransform
 import cubicsuperpath
 import cspsubdiv

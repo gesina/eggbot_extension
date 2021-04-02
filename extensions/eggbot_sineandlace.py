@@ -359,7 +359,7 @@ class SpiroSine( inkex.Effect ):
 
 		style = { 'stroke': 'black', 'stroke-width': '1', 'fill': 'none' }
 		path_attrs = {
-			'style': simplestyle.formatStyle( style ),
+			'style': str(inkex.Style( style )),
 			'd': simplepath.formatPath( path_data ),
 			inkex.addNS( 'desc', self.nsPrefix ): path_desc }
 		newpath = lxml.etree.SubElement( self.document.getroot(),

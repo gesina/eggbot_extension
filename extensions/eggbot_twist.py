@@ -33,7 +33,7 @@
 
 import inkex
 import simplepath
-import simplestyle
+
 import simpletransform
 import cubicsuperpath
 import cspsubdiv
@@ -481,7 +481,7 @@ class Twist( inkex.Effect ):
 		# Now make a <path> element which contains the twist & is a child
 		# of the new <g> element
 		style = { 'stroke': '#000000', 'fill': 'none', 'stroke-width': '1' }
-		line_attribs = { 'style':simplestyle.formatStyle( style ), 'd': path }
+		line_attribs = { 'style':str(inkex.Style( style )), 'd': path }
 		if ( cloneTransform != None ) and ( cloneTransform != '' ):
 			line_attribs['transform'] = cloneTransform
 		lxml.etree.SubElement( g, inkex.addNS( 'path', 'svg' ), line_attribs )
