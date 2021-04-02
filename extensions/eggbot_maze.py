@@ -386,7 +386,7 @@ class Maze( inkex.Effect ):
 		node.set( 'height', '800' )
 
 		# The following end up being ignored by Inkscape....
-		node = self.getNamedView()
+		node = self.svg.namedview
 		node.set( 'showborder',  'false' )
 		node.set( inkex.addNS( 'cx', u'inkscape' ), '1600' )
 		node.set( inkex.addNS( 'cy', u'inkscape' ), '500' )
