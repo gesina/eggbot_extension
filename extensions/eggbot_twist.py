@@ -436,7 +436,7 @@ class Twist( inkex.Effect ):
 
 				pass
 
-			elif not isinstance( node.tag, basestring ):
+			elif not isinstance( node.tag, str ):
 
 				pass
 

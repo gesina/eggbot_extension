@@ -868,7 +868,7 @@ class EggBot( inkex.Effect ):
 				elif node.tag == inkex.addNS( 'color-profile', 'svg' ) or node.tag == 'color-profile':
 					# Gamma curves, color temp, etc. are not relevant to single color output
 					pass
-				elif not isinstance( node.tag, basestring ):
+				elif not isinstance( node.tag, str ):
 					# This is likely an XML processing instruction such as an XML
 					# comment.  lxml uses a function reference for such node tags
 					# and as such the node tag is likely not a printable string.
