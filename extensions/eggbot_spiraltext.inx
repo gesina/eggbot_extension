@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-  <_name>Spiral Wrapped Text</_name>
+  <name>Spiral Wrapped Text</name>
   <id>command.eggbot.contributed.eggbot_spiraltext101</id>
   <dependency type="executable" location="extensions">hersheydata.py</dependency>
-  <dependency type="executable" location="extensions">simplestyle.py</dependency>
   <dependency type="executable" location="extensions">eggbot_spiraltext.py</dependency>
   <dependency type="executable" location="extensions">inkex.py</dependency>
   <param name="tab" type="notebook">
-    <page name="splash" _gui-text="Render Text">
-      <_param name="stuff" type="description">
+    <page name="splash" gui-text="Render Text">
+      <label>
 This extension renders passages of text as a single, long line
 of text, tilted slightly so that it spirals as it wraps around
 your egg.
@@ -16,20 +15,20 @@ your egg.
 Specify the number of times the text should wrap. This value
 need not be a whole number.  The text will then be scaled so
 as to have the length (number of times to wrap) x 3200 pixels.
-</_param>
-      <param name="wrap" type="float" min="1" max="100" _gui-text="Number of times to wrap ">8.5</param>
-      <param name="stretch" type="boolean" _gui-text="Stretch the text horizontally to account for the egg's geometry? ">true</param>
-      <param name="flip" type="boolean" _gui-text="Plot with the egg's bottom at the egg motor? ">false</param>
-      <param name="text" type="string" _gui-text="Text ">How do you drop an egg 2 meters without it breaking? Drop it from 3 meters: it won't break for the first 2!  *   If a rooster laid an egg at the peak of a roof, which side would it roll down? Neither side: roosters don't lay eggs!  *  What's the best day to eat eggs? Fry day  *  What happens when you tickle eggs? They crack up!  *  What sport are eggs good at? Running!  * What kind of jokes do eggs tell? Egg yolks  *  What's an egg's favorite robot? The EggBot!</param>
+</label>
+      <param name="wrap" type="float" min="1" max="100" gui-text="Number of times to wrap ">8.5</param>
+      <param name="stretch" type="bool" gui-text="Stretch the text horizontally to account for the egg's geometry? ">true</param>
+      <param name="flip" type="bool" gui-text="Plot with the egg's bottom at the egg motor? ">false</param>
+      <param name="text" type="string" gui-text="Text ">How do you drop an egg 2 meters without it breaking? Drop it from 3 meters: it won't break for the first 2!  *   If a rooster laid an egg at the peak of a roof, which side would it roll down? Neither side: roosters don't lay eggs!  *  What's the best day to eat eggs? Fry day  *  What happens when you tickle eggs? They crack up!  *  What sport are eggs good at? Running!  * What kind of jokes do eggs tell? Egg yolks  *  What's an egg's favorite robot? The EggBot!</param>
 <!-- OMELET (2 servings): For a firm omelet, beat 2 eggs with a fork until blended.  Beat in 2 tablespoons cream or milk, 1/4 teaspoon salt, and a pinch of white pepper or paprika.  In a non-stick skillet, melt 3/4 tablespoons butter.  When hot, add the egg mixture and cook over low heat.  With a spatula, lift the edges and, by tilting the skillet, allow the uncooked custard to run underneath the omelet.  When the omelet is cooked to an even consistency, fold over and serve.  <times><i&>Bon appetit!</i></times> -->
-      <param name="fontfamily" type="optiongroup" appearance="minimal" _gui-text="Starting font ">
-	<_option value="sans">Sans</_option>
-	<_option value="times">Times</_option>
-	<_option value="script">Script</_option>
+      <param name="fontfamily" type="optiongroup" appearance="combo" gui-text="Starting font ">
+	<option value="sans">Sans</option>
+	<option value="times">Times</option>
+	<option value="script">Script</option>
       </param>
     </page>
-    <page name="markup" _gui-text="Markup">
-      <_param name="aboutpage" type="description" xml:space="preserve">
+    <page name="markup" gui-text="Markup">
+      <label xml:space="preserve">
 Simple&#160;markup&#160;may&#160;be&#160;used&#160;to&#160;switch&#160;between&#160;type&#160;faces&#160;(fonts)
 as well as to select bold, italic and emphasized type faces.
 
@@ -47,10 +46,10 @@ Special characters:
   &lt;  --  Enter " &amp;lt; " in your text
   &gt;  --  Enter " &amp;gt; " in your text
   &amp;  --  Enter " &amp;amp; " in your text 
-</_param>
+</label>
     </page>
-    <page name="fonts1" _gui-text="Text Fonts">
-      <_param name="aboutpage1" type="description" xml:space="preserve">
+    <page name="fonts1" gui-text="Text Fonts">
+      <label xml:space="preserve">
 In addition to the sans, times and script type families, other text-oriented
 type faces are available.  For these faces, use of the &lt;b&gt;, &lt;em&gt; and
 &lt;i&gt; markups have no effect and are ignored.
@@ -70,10 +69,10 @@ For a complete list of EMS fonts, refer to the "Font face" list in the Render/He
 
 
 
-</_param>
+</label>
 </page>
-    <page name="fonts2" _gui-text="Symbol Fonts">
-      <_param name="aboutpage1" type="description" xml:space="preserve">
+    <page name="fonts2" gui-text="Symbol Fonts">
+      <label xml:space="preserve">
 In addition to type faces for text, several type faces of symbols
 are also available.  When these type faces are used, the &lt;b&gt;,
 &lt;em&gt; and &lt;i&gt; markups have no effect and are ignored.
@@ -91,10 +90,10 @@ are also available.  When these type faces are used, the &lt;b&gt;,
 
 
 
-</_param>
+</label>
 </page>
-<page name="info" _gui-text="About...">
-<_param name="aboutpage3" type="description" xml:space="preserve">
+<page name="info" gui-text="About...">
+<label xml:space="preserve">
 This extension renders a passage of text tilted at an angle
 so as to wrap around an egg in a spiral.  To render the text,
 the "Hershey" fonts for plotters is used.  These fonts are
@@ -108,16 +107,16 @@ extension under the "Render" category of Extensions.
 For additional information, please visit:
 
   www.evilmadscientist.com/go/hershey
-</_param>
+</label>
 </page>
 </param>
-  <effect needs-live-preview="true" needs-document="no">
+  <effect needs-live-preview="true" needs-document="false">
     <object-type>all</object-type>
     <effects-menu>
-      <submenu _name="EggBot Contributed"/>
+      <submenu name="EggBot Contributed"/>
     </effects-menu>
   </effect>
   <script>
-    <command reldir="extensions" interpreter="python">eggbot_spiraltext.py</command>
+    <command location="inx" interpreter="python">eggbot_spiraltext.py</command>
   </script>
 </inkscape-extension>

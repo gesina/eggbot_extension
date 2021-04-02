@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-  <_name>Reorder Paths for Speed</_name>
+  <name>Reorder Paths for Speed</name>
   <id>command.evilmadscience.eggbot_reorder2.eggbot</id>
   <dependency type="extension">org.inkscape.output.svg.inkscape</dependency>
   <dependency type="executable" location="extensions">eggbot_reorder.py</dependency>
   <dependency type="executable" location="extensions">inkex.py</dependency>
   <!-- Written by Matthew Beckler for the Egg-Bot project. Email questions and comments to matthew at mbeckler dot org -->
 
-	  <_param name="Header" type="description" xml:space="preserve">
+	  <label xml:space="preserve">
  This extension will perform simple optimizations 
  of selected paths. It will try to change the 
  order of plotting so as to reduce the amount
@@ -26,23 +26,23 @@
  experimental, and is only provided in case you 
  may find it useful. Be sure to save a copy of 
  your document before running this routine.
-            </_param>
+            </label>
 
   <!--
-  <param name="reverse" type="boolean" _gui-text="Allow paths to be reversed*">false</param>
-  <param name="wrap" type="boolean" _gui-text="Allow wrap-around egg axis*">false</param>
+  <param name="reverse" type="bool" gui-text="Allow paths to be reversed*">false</param>
+  <param name="wrap" type="bool" gui-text="Allow wrap-around egg axis*">false</param>
 
-	  <_param name="nyet" type="description" xml:space="preserve">
+	  <label xml:space="preserve">
   *Option not yet implemented.
-            </_param>
+            </label>
 -->
-  <effect needs-live-preview="false" needs-document="no">
+  <effect needs-live-preview="false" needs-document="false">
     <object-type>all</object-type>
     <effects-menu>
-        <submenu _name="EggBot"/>
+        <submenu name="EggBot"/>
     </effects-menu>
   </effect>
   <script>
-    <command reldir="extensions" interpreter="python">eggbot_reorder.py</command>
+    <command location="inx" interpreter="python">eggbot_reorder.py</command>
   </script>
 </inkscape-extension>
