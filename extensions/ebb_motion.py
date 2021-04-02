@@ -288,7 +288,7 @@ def queryVoltage( portName ):
 		EBBversionString = ebb_serial.queryVersion(portName) # Full string, human readable
 		EBBversionString = EBBversionString.split("Version ",1)[1]   # Stripped copy, for version # comparisons
 		EBBversionString = EBBversionString.strip()
-		if (EBBversionString is not "none"):
+		if (EBBversionString != "none"):
 			if (LooseVersion(EBBversionString) >= LooseVersion("2.2.3")):
 				rawString = (ebb_serial.query( portName, 'QC\r' ))
 				voltagevalue = int(rawString.split(",",1)[1]) # Pick second value only
