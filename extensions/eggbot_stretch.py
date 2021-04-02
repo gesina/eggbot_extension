@@ -23,6 +23,7 @@ import simplepath
 from inkex.paths import Path
 
 import simpletransform
+from inkex.transforms import Transform
 import cubicsuperpath
 import cspsubdiv
 import bezmisc
@@ -218,7 +219,7 @@ class Map( inkex.Effect ):
 				if ( vinfo[2] != 0 ) and ( vinfo[3] != 0 ):
 					sx = self.docWidth / float( vinfo[2] )
 					sy = self.docHeight / float( vinfo[3] )
-					self.docTransform = simpletransform.parseTransform( 'scale(%f,%f)' % (sx, sy) )
+					self.docTransform = Transform( 'scale(%f,%f)' % (sx, sy) ).matrix
 
 	def getPathVertices( self, path, node=None, transform=None, find_bbox=False ):
 
@@ -343,7 +344,7 @@ class Map( inkex.Effect ):
 				pass
 
 			# First apply the current matrix transform to this node's tranform
-			matNew = simpletransform.composeTransform( matCurrent, simpletransform.parseTransform( node.get( "transform" ) ) )
+			matNew = simpletransform.composeTransform( matCurrent, Transform( node.get( "transform" ) ).matrix )
 
 			if node.tag == inkex.addNS( 'g', 'svg' ) or node.tag == 'g':
 
@@ -376,7 +377,7 @@ class Map( inkex.Effect ):
 					y = float( node.get( 'y', '0' ) )
 					# Note: the transform has already been applied
 					if ( x != 0 ) or (y != 0 ):
-					       	matNew2 = composeTransform( matNew, parseTransform( 'translate(%f,%f)' % (x,y) ) )
+					       	matNew2 = composeTransform( matNew, Transform( 'translate(%f,%f)' % (x,y) ).matrix )
 					else:
 					       	matNew2 = matNew
 					v = node.get( 'visibility', v )
@@ -619,7 +620,7 @@ class Map( inkex.Effect ):
 			if node_transform is None:
 				return parent_transform
 			else:
-				tr = simpletransform.parseTransform( node_transform )
+				tr = Transform( node_transform ).matrix
 				if parent_transform is None:
 					return tr
 				else:

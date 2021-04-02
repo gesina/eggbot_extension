@@ -24,7 +24,7 @@ import inkex
 import math
 import random
 import simplepath
-import simpletransform
+from inkex.transforms import Transform
 import sys
 
 def dist( x0, y0, x1, y1 ):
@@ -144,7 +144,7 @@ class EggBotReorderPaths( inkex.Effect ):
 			for id, node in self.svg.selected.iteritems():
 				transform = node.get( 'transform' )
 				if transform:
-					transform = simpletransform.parseTransform( transform )
+					transform = Transform( transform ).matrix
 
 				item = ( id, self.get_start_end( node, transform ) )
 				objlist.append( item )

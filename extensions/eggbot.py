@@ -21,6 +21,7 @@
 # TODO: Add and honor advisory locking around device open/close for non Win32
 
 from simpletransform import *
+from inkex.transforms import Transform
 
 import gettext
 import inkex
@@ -432,7 +433,7 @@ class EggBot( inkex.Effect ):
 			if ( float(vinfo[2]) != 0 ) and ( float(vinfo[3]) != 0 ):
 				sx = self.svgWidth / float( vinfo[2] )
 				sy = self.svgHeight / float( vinfo[3] )
-				self.svgTransform = parseTransform( 'scale(%f,%f) translate(%f,%f)' % (sx, sy, -float( vinfo[0] ), -float( vinfo[1] ) ) )
+				self.svgTransform = Transform( 'scale(%f,%f) translate(%f,%f)' % (sx, sy, -float( vinfo[0] ), -float( vinfo[1] ) ) ).matrix
 
 		self.ServoSetup()
 		ebb_motion.sendEnableMotors(self.serialPort, 1) # 16X microstepping
@@ -500,7 +501,7 @@ class EggBot( inkex.Effect ):
 				continue
 
 			# first apply the current matrix transform to this node's tranform
-			matNew = composeTransform( matCurrent, parseTransform( node.get( "transform" ) ) )
+			matNew = composeTransform( matCurrent, Transform( node.get( "transform" ) ).matrix )
 
 			if node.tag == inkex.addNS( 'g', 'svg' ) or node.tag == 'g':
 
@@ -536,7 +537,7 @@ class EggBot( inkex.Effect ):
 						y = float( node.get( 'y', '0' ) )
 						# Note: the transform has already been applied
 						if ( x != 0 ) or (y != 0 ):
-							matNew2 = composeTransform( matNew, parseTransform( 'translate(%f,%f)' % (x,y) ) )
+							matNew2 = composeTransform( matNew, Transform( 'translate(%f,%f)' % (x,y) ).matrix )
 						else:
 							matNew2 = matNew
 						v = node.get( 'visibility', v )

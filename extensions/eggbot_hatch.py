@@ -107,6 +107,7 @@ import inkex
 import simplepath
 from inkex.paths import Path
 import simpletransform
+from inkex.transforms import Transform
 
 import cubicsuperpath
 import cspsubdiv
@@ -684,7 +685,7 @@ class Eggbot_Hatch( inkex.Effect ):
 				if ( vinfo[2] != 0 ) and ( vinfo[3] != 0 ):
 					sx = self.docWidth / float( vinfo[2] )
 					sy = self.docHeight / float( vinfo[3] )
-					self.docTransform = simpletransform.parseTransform( 'scale(%f,%f)' % (sx, sy) )
+					self.docTransform = Transform( 'scale(%f,%f)' % (sx, sy) ).matrix
 
 	def addPathVertices( self, path, node=None, transform=None ):
 
@@ -820,7 +821,7 @@ class Eggbot_Hatch( inkex.Effect ):
 
 			# first apply the current matrix transform to this node's tranform
 			matNew = simpletransform.composeTransform( matCurrent,
-				simpletransform.parseTransform( node.get( "transform" ) ) )
+				Transform( node.get( "transform" ) ).matrix )
 				
 			if node.tag == inkex.addNS( 'g', 'svg' ) or node.tag == 'g':
 				self.recursivelyTraverseSvg( node, matNew, parent_visibility=v )
@@ -852,7 +853,7 @@ class Eggbot_Hatch( inkex.Effect ):
 					y = float( node.get( 'y', '0' ) )
 					# Note: the transform has already been applied
 					if ( x != 0 ) or ( y != 0 ):
-						matNew2 = composeTransform( matNew, parseTransform( 'translate(%f,%f)' % (x,y) ) )
+						matNew2 = composeTransform( matNew, Transform( 'translate(%f,%f)' % (x,y) ).matrix )
 					else:
 						matNew2 = matNew
 					v = node.get( 'visibility', v )
