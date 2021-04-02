@@ -112,4 +112,3 @@ class EggBot_PostProcessTraceBitmap( inkex.Effect ):
 if __name__ == '__main__':
 	e = EggBot_PostProcessTraceBitmap()
 	e.run()
-	e.affect()
