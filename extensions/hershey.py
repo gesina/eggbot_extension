@@ -81,7 +81,7 @@ class Hershey( inkex.Effect ):
         g_attribs = {inkex.addNS('label','inkscape'):'Hershey Text' }
         g = lxml.etree.SubElement(self.current_layer, 'g', g_attribs)
 
-        scale = self.unittouu('1px')    # convert to document units
+        scale = self.svg.unittouu('1px')    # convert to document units
         font = eval('hersheydata.' + str(self.options.fontface))
         clearfont = hersheydata.futural  
         #Baseline: modernized roman simplex from JHF distribution.
