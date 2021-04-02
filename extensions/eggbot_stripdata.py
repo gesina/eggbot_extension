@@ -27,4 +27,4 @@ class EggBotStripData( inkex.Effect ):
 		inkex.errormsg( gettext.gettext( "Okay, I've removed all Eggbot data from this Inkscape file.  Have a nice day!" ) )
 
 e = EggBotStripData()
-e.affect()
+e.run()

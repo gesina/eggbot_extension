@@ -1166,4 +1166,4 @@ class EggBot( inkex.Effect ):
 				self.bStopped = True
 				return
 e = EggBot()
-e.affect()
+e.run()

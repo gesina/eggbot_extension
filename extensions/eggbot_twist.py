@@ -537,4 +537,4 @@ class Twist( inkex.Effect ):
 if __name__ == '__main__':
 
 	e = Twist()
-	e.affect()
+	e.run()

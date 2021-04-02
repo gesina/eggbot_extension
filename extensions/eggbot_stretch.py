@@ -670,4 +670,4 @@ class Map( inkex.Effect ):
 if __name__ == '__main__':
 
 	e = Map()
-	e.affect()
+	e.run()

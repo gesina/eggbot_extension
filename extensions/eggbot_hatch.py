@@ -1797,4 +1797,4 @@ class Eggbot_Hatch( inkex.Effect ):
 if __name__ == '__main__':
 
 	e = Eggbot_Hatch()
-	e.affect()
+	e.run()

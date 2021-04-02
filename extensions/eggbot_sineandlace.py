@@ -366,4 +366,4 @@ class SpiroSine( inkex.Effect ):
 if __name__ == '__main__':
 
 	e = SpiroSine()
-	e.affect()
+	e.run()

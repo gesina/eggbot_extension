@@ -264,4 +264,4 @@ class AcrosticText( inkex.Effect ):
 
 if __name__ == '__main__':
 	e = AcrosticText()
-	e.affect()
+	e.run()

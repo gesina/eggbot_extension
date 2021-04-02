@@ -49,4 +49,4 @@ class PresetHatch(inkex.Effect):
 					node.set( 'fat_output', 'false' )
 
 e = PresetHatch()
-e.affect()
+e.run()

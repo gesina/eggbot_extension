@@ -167,4 +167,4 @@ class EggBotReorderPaths( inkex.Effect ):
 
 
 e = EggBotReorderPaths()
-e.affect()
+e.run()

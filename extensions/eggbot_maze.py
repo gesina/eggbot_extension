@@ -668,4 +668,4 @@ class Maze( inkex.Effect ):
 
 if __name__ == '__main__':
 	e = Maze()
-	e.affect()
+	e.run()

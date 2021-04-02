@@ -433,4 +433,4 @@ class SpiralText( inkex.Effect ):
 
 if __name__ == '__main__':
 	e = SpiralText()
-	e.affect()
+	e.run()
