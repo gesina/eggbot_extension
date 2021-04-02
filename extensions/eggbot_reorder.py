@@ -97,9 +97,9 @@ def conv( x, y, trans_matrix=None ):
 class EggBotReorderPaths( inkex.Effect ):
 	def __init__( self ):
 		inkex.Effect.__init__( self )
-# 		self.OptionParser.add_option( '-r', '--reverse', action='store', type="inkbool",
+# 		self.arg_parser.add_argument( '-r', '--reverse', type=inkex.Boolean,
 # 			dest="reverse", default=True, help="Enable 'reverse path direction' optimizations" )
-# 		self.OptionParser.add_option( '-w', '--wrap', action='store', type="inkbool",
+# 		self.arg_parser.add_argument( '-w', '--wrap', type=inkex.Boolean,
 # 				dest="wrap", default=True, help="Enable 'wrap egg axis' optimizations" )
 
 	def get_start_end( self, node, transform ):

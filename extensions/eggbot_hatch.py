@@ -616,40 +616,40 @@ class Eggbot_Hatch( inkex.Effect ):
 		self.docTransform = [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]]
 
 
-		self.OptionParser.add_option(
-			"--holdBackSteps", action="store", type="float",
+		self.arg_parser.add_argument(
+			"--holdBackSteps", type=float,
 			dest="holdBackSteps", default=3.0,
 			help="How far hatch strokes stay from boundary (steps)" )
-		self.OptionParser.add_option(
-			"--hatchScope", action="store", type="float",
+		self.arg_parser.add_argument(
+			"--hatchScope", type=float,
 			dest="hatchScope", default=3.0,
 			help="Radius searched for segments to join (units of hatch width)" )
-		self.OptionParser.add_option(
-			"--holdBackHatchFromEdges", action="store", dest="holdBackHatchFromEdges",
-			type="inkbool", default=True,
+		self.arg_parser.add_argument(
+			"--holdBackHatchFromEdges", dest="holdBackHatchFromEdges",
+			type=inkex.Boolean, default=True,
 			help="Stay away from edges, so no need for inset" )
-		self.OptionParser.add_option(
-			"--reducePenLifts", action="store", dest="reducePenLifts",
-			type="inkbool", default=True,
+		self.arg_parser.add_argument(
+			"--reducePenLifts", dest="reducePenLifts",
+			type=inkex.Boolean, default=True,
 			help="Reduce plotting time by joining some hatches" )
-		self.OptionParser.add_option(
-			"--crossHatch", action="store", dest="crossHatch",
-			type="inkbool", default=False,
+		self.arg_parser.add_argument(
+			"--crossHatch", dest="crossHatch",
+			type=inkex.Boolean, default=False,
 			help="Generate a cross hatch pattern" )
-		self.OptionParser.add_option(
-			"--hatchAngle", action="store", type="float",
+		self.arg_parser.add_argument(
+			"--hatchAngle", type=float,
 			dest="hatchAngle", default=90.0,
 			help="Angle of inclination for hatch lines" )
-		self.OptionParser.add_option(
-			"--hatchSpacing", action="store", type="float",
+		self.arg_parser.add_argument(
+			"--hatchSpacing", type=float,
 			dest="hatchSpacing", default=10.0,
 			help="Spacing between hatch lines" )
-		self.OptionParser.add_option(
-			"--tolerance", action="store", type="float",
+		self.arg_parser.add_argument(
+			"--tolerance", type=float,
 			dest="tolerance", default=20.0,
 			help="Allowed deviation from original paths" )
-		self.OptionParser.add_option( "--tab",	#NOTE: value is not used.
-			action="store", type="string", dest="tab", default="splash",
+		self.arg_parser.add_argument( "--tab",	#NOTE: value is not used.
+			type=str, dest="tab", default="splash",
 			help="The active tab when Apply was pressed" )
 
 	def getDocProps( self ):

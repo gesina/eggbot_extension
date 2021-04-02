@@ -33,17 +33,17 @@ class EggBot_PostProcessTraceBitmap( inkex.Effect ):
 
 	def __init__(self):
 		inkex.Effect.__init__( self )
-		self.OptionParser.add_option(
-			"--outlineRegions", action="store", dest="outlineRegions",
-			type="inkbool", default=True,
+		self.arg_parser.add_argument(
+			"--outlineRegions", dest="outlineRegions",
+			type=inkex.Boolean, default=True,
 			help="Outline the regions with a stroked line of the same color as the region itself" )
-		self.OptionParser.add_option(
-			"--fillRegions", action="store", dest="fillRegions",
-			type="inkbool", default=True,
+		self.arg_parser.add_argument(
+			"--fillRegions", dest="fillRegions",
+			type=inkex.Boolean, default=True,
 			help="Fill regions with color" )
-		self.OptionParser.add_option(
-			"--removeImage", action="store", dest="removeImage",
-			type="inkbool", default=True,
+		self.arg_parser.add_argument(
+			"--removeImage", dest="removeImage",
+			type=inkex.Boolean, default=True,
 			help="Remove the traced bitmap image from the drawing" )
 
 	def effect(self):

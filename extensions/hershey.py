@@ -54,20 +54,20 @@ def svg_text_width(char, face, offset):
 class Hershey( inkex.Effect ):
     def __init__( self ):
         inkex.Effect.__init__( self )
-        self.OptionParser.add_option( "--tab",  #NOTE: value is not used.
-            action="store", type="string",
+        self.arg_parser.add_argument( "--tab",  #NOTE: value is not used.
+            type=str,
             dest="tab", default="splash",
             help="The active tab when Apply was pressed" )
-        self.OptionParser.add_option( "--text",
-            action="store", type="string", 
+        self.arg_parser.add_argument( "--text",
+            type=str,
             dest="text", default="Hershey Text for Inkscape",
             help="The input text to render")
-        self.OptionParser.add_option( "--action",
-            action="store", type="string",
+        self.arg_parser.add_argument( "--action",
+            type=str,
             dest="action", default="render",
             help="The active option when Apply was pressed" )
-        self.OptionParser.add_option( "--fontface",
-            action="store", type="string",
+        self.arg_parser.add_argument( "--fontface",
+            type=str,
             dest="fontface", default="rowmans",
             help="The selected font face when Apply was pressed" )
 

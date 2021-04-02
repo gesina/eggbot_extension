@@ -140,44 +140,44 @@ class AcrosticText( inkex.Effect ):
 	def __init__( self ):
 
 		inkex.Effect.__init__( self )
-		self.OptionParser.add_option( "--tab",	#NOTE: value is not used.
-			action="store", type="string", dest="tab", default="splash",
+		self.arg_parser.add_argument( "--tab",	#NOTE: value is not used.
+			type=str, dest="tab", default="splash",
 			help="The active tab when Apply was pressed" )
-		self.OptionParser.add_option( "--line01", action="store",
-			type="string", dest="line1", default="")
-		self.OptionParser.add_option( "--line02", action="store",
-			type="string", dest="line2", default="")
-		self.OptionParser.add_option( "--line03", action="store",
-			type="string", dest="line3", default="")
-		self.OptionParser.add_option( "--line04", action="store",
-			type="string", dest="line4", default="")
-		self.OptionParser.add_option( "--line05", action="store",
-			type="string", dest="line5", default="")
-		self.OptionParser.add_option( "--line06", action="store",
-			type="string", dest="line6", default="")
-		self.OptionParser.add_option( "--line07", action="store",
-			type="string", dest="line7", default="")
-		self.OptionParser.add_option( "--line08", action="store",
-			type="string", dest="line8", default="")
-		self.OptionParser.add_option( "--line09", action="store",
-			type="string", dest="line9", default="")
-		self.OptionParser.add_option( "--line10", action="store",
-			type="string", dest="line10", default="")
-		self.OptionParser.add_option( "--line11", action="store",
-			type="string", dest="line11", default="")
-		self.OptionParser.add_option( "--line12", action="store",
-			type="string", dest="line12", default="")
-		self.OptionParser.add_option( "--face1",
-			action="store", type="string", dest="face1", default="scriptc",
+		self.arg_parser.add_argument( "--line01",
+			type=str, dest="line1", default="")
+		self.arg_parser.add_argument( "--line02",
+			type=str, dest="line2", default="")
+		self.arg_parser.add_argument( "--line03",
+			type=str, dest="line3", default="")
+		self.arg_parser.add_argument( "--line04",
+			type=str, dest="line4", default="")
+		self.arg_parser.add_argument( "--line05",
+			type=str, dest="line5", default="")
+		self.arg_parser.add_argument( "--line06",
+			type=str, dest="line6", default="")
+		self.arg_parser.add_argument( "--line07",
+			type=str, dest="line7", default="")
+		self.arg_parser.add_argument( "--line08",
+			type=str, dest="line8", default="")
+		self.arg_parser.add_argument( "--line09",
+			type=str, dest="line9", default="")
+		self.arg_parser.add_argument( "--line10",
+			type=str, dest="line10", default="")
+		self.arg_parser.add_argument( "--line11",
+			type=str, dest="line11", default="")
+		self.arg_parser.add_argument( "--line12",
+			type=str, dest="line12", default="")
+		self.arg_parser.add_argument( "--face1",
+			type=str, dest="face1", default="scriptc",
 			help="Leading font typeface" )
-		self.OptionParser.add_option( "--face2", action="store",
-			type="string", dest="face2", default="scripts",
+		self.arg_parser.add_argument( "--face2",
+			type=str, dest="face2", default="scripts",
 			help="Secondary typeface" )
-		self.OptionParser.add_option( "--flip", action="store", type="inkbool",
+		self.arg_parser.add_argument( "--flip", type=inkex.Boolean,
 			dest="flip", default=False,
 			help="Flip the text for plotting with the egg's bottom at the egg motor" )
-		self.OptionParser.add_option( "--stretch",
-			action="store", type="inkbool", dest="stretch", default=True,
+		self.arg_parser.add_argument( "--stretch",
+			type=inkex.Boolean, dest="stretch", default=True,
 			help="Stretch the text horizontally to account for egg distortions" )
 
 	def effect( self ):

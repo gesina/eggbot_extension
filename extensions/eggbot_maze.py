@@ -120,15 +120,15 @@ class Maze( inkex.Effect ):
 
 		inkex.Effect.__init__( self )
 
-		self.OptionParser.add_option(
-			"--tab", action="store", type="string",
+		self.arg_parser.add_argument(
+			"--tab", type=str,
 			dest="tab", default="controls",
 			help="The active tab when Apply was pressed" )
-		self.OptionParser.add_option(
-			"--mazeSize", action="store", type="string", dest="mazeSize",
+		self.arg_parser.add_argument(
+			"--mazeSize", type=str, dest="mazeSize",
 			default="MEDIUM", help="Difficulty of maze to build" )
-		#self.OptionParser.add_option(
-		#	"--hpp", action="store", type="inkbool", dest="hpp", default=False,
+		#self.arg_parser.add_argument(
+		#	"--hpp", type=inkex.Boolean, dest="hpp", default=False,
 		#	help="Use a faster plotting technique that requires much better plotting precision" )
 		#self.hpp = self.options.hpp
 

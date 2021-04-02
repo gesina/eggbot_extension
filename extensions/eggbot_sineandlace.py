@@ -256,53 +256,53 @@ class SpiroSine( inkex.Effect ):
 
 		inkex.Effect.__init__(self)
 
-		self.OptionParser.add_option( "--tab",	#NOTE: value is not used.
-			action="store", type="string",
+		self.arg_parser.add_argument( "--tab",	#NOTE: value is not used.
+			type=str,
 			dest="tab", default="splash",
 			help="The active tab when Apply was pressed" )
 
-		self.OptionParser.add_option('--fCycles', dest='fCycles',
-			type='float', default=float( 10 ), action='store',
+		self.arg_parser.add_argument('--fCycles', dest='fCycles',
+			type=float, default=float( 10 ),
 			help='Number of cycles (periods)' )
 
-		self.OptionParser.add_option('--nrN', dest='nrN',
-			type='int', default=int( 0 ), action='store',
+		self.arg_parser.add_argument('--nrN', dest='nrN',
+			type=int, default=int( 0 ),
 			help='Start x at 2 * pi * n / m' )
 
-		self.OptionParser.add_option('--nrM', dest='nrM',
-			type='int', default=int( 0 ), action='store',
+		self.arg_parser.add_argument('--nrM', dest='nrM',
+			type=int, default=int( 0 ),
 			help='Start x at 2 * pi * n / m' )
 
-		self.OptionParser.add_option('--fRecess', dest='fRecess',
-			type='float', default=float( 2 ), action='store',
+		self.arg_parser.add_argument('--fRecess', dest='fRecess',
+			type=float, default=float( 2 ),
 			help='Recede from envelope by factor' )
 
-		self.OptionParser.add_option("--nSamples", dest="nSamples",
-			type="int", default=float( 50 ), action="store",
+		self.arg_parser.add_argument("--nSamples", dest="nSamples",
+			type=int, default=float( 50 ),
 			help="Number of points to sample" )
 
-		self.OptionParser.add_option("--nWidth", dest="nWidth",
-			type="int", default=int( 3200 ), action="store",
+		self.arg_parser.add_argument("--nWidth", dest="nWidth",
+			type=int, default=int( 3200 ),
 			help="Width in pixels" )
 
-		self.OptionParser.add_option("--nHeight", dest="nHeight",
-			type="int", default=int( 100 ), action="store",
+		self.arg_parser.add_argument("--nHeight", dest="nHeight",
+			type=int, default=int( 100 ),
 			help="Height in pixels" )
 
-		self.OptionParser.add_option("--nOffsetX", dest="nOffsetX",
-			type="int", default=int( 0 ), action="store",
+		self.arg_parser.add_argument("--nOffsetX", dest="nOffsetX",
+			type=int, default=int( 0 ),
 			help="Starting x coordinate (pixels)" )
 
-		self.OptionParser.add_option("--nOffsetY", dest="nOffsetY",
-			type="int", default=int( 400 ), action="store",
+		self.arg_parser.add_argument("--nOffsetY", dest="nOffsetY",
+			type=int, default=int( 400 ),
 			help="Starting y coordinate (pixels)" )
 
-		self.OptionParser.add_option('--bLace', dest='bLace',
-			type='inkbool', default=False, action='store',
+		self.arg_parser.add_argument('--bLace', dest='bLace',
+			type=inkex.Boolean, default=False,
 			help='Lace' )
 
-		self.OptionParser.add_option('--bSpline', dest='bSpline',
-			type='inkbool', default=True, action='store',
+		self.arg_parser.add_argument('--bSpline', dest='bSpline',
+			type=inkex.Boolean, default=True,
 			help='Spline' )
 
 		self.recess = float( 0.95 )

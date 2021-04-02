@@ -372,28 +372,28 @@ class SpiralText( inkex.Effect ):
 
 	def __init__( self ):
 		inkex.Effect.__init__( self )
-		self.OptionParser.add_option( "--tab",	#NOTE: value is not used.
-			action="store", type="string",
+		self.arg_parser.add_argument( "--tab",	#NOTE: value is not used.
+			type=str,
 			dest="tab", default="splash",
 			help="The active tab when Apply was pressed" )
-		self.OptionParser.add_option( "--text",
-			action="store", type="string",
+		self.arg_parser.add_argument( "--text",
+			type=str,
 			dest="text", default="Hershey Text for Inkscape",
 			help="The input text to render")
-		self.OptionParser.add_option( "--fontfamily",
-			action="store", type="string",
+		self.arg_parser.add_argument( "--fontfamily",
+			type=str,
 			dest="fontfamily", default="sans",
 			help="The selected font face when Apply was pressed" )
-		self.OptionParser.add_option( "--wrap",
-			action="store", type="float",
+		self.arg_parser.add_argument( "--wrap",
+			type=float,
 			dest="wrap", default=float(10),
 			help="Number of times to wrap the text around the egg" )
-		self.OptionParser.add_option( "--flip",
-			action="store", type="inkbool",
+		self.arg_parser.add_argument( "--flip",
+			type=inkex.Boolean,
 			dest="flip", default=False,
 			help="Flip the text for plotting with the egg's bottom at the egg motor" )
-		self.OptionParser.add_option( "--stretch",
-			action="store", type="inkbool",
+		self.arg_parser.add_argument( "--stretch",
+			type=inkex.Boolean,
 			dest="stretch", default=True,
 			help="Stretch the text horizontally to account for egg distortions" )
 

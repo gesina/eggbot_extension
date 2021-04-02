@@ -21,7 +21,7 @@ import inkex
 class PresetHatch(inkex.Effect):
 	def __init__(self):
 		inkex.Effect.__init__(self)
-		self.OptionParser.add_option("--title")
+		self.arg_parser.add_argument("--title")
 	def effect(self):
 		self.svgDefRead = False;
 		self.svg = self.document.getroot()
