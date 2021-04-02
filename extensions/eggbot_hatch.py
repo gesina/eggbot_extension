@@ -1240,7 +1240,7 @@ class Eggbot_Hatch( inkex.Effect ):
 		if self.options.ids:
 			# Traverse the selected objects
 			for id in self.options.ids:
-				self.recursivelyTraverseSvg( [self.selected[id]], self.docTransform )
+				self.recursivelyTraverseSvg( [self.svg.selected[id]], self.docTransform )
 		else:
 			# Traverse the entire document
 			self.recursivelyTraverseSvg( self.document.getroot(), self.docTransform )

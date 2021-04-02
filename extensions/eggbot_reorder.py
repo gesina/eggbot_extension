@@ -127,7 +127,7 @@ class EggBotReorderPaths( inkex.Effect ):
 		"""This is the main entry point"""
 
 		# based partially on the restack.py extension
-		if len( self.selected ) > 0:
+		if len( self.svg.selected ) > 0:
 			svg = self.document.getroot()
 
 			# TODO check for non-path elements?
@@ -141,7 +141,7 @@ class EggBotReorderPaths( inkex.Effect ):
 			# 2. Some magic with xpath? (would this limit us to specific node types?)
 
 			objlist = []
-			for id, node in self.selected.iteritems():
+			for id, node in self.svg.selected.iteritems():
 				transform = node.get( 'transform' )
 				if transform:
 					transform = simpletransform.parseTransform( transform )
@@ -154,8 +154,8 @@ class EggBotReorderPaths( inkex.Effect ):
 
 			for id in sort_order:
 				# There's some good magic here, that you can use an
-				# object id to index into self.selected. Brilliant!
-				self.current_layer.append( self.selected[id] )
+				# object id to index into self.svg.selected. Brilliant!
+				self.current_layer.append( self.svg.selected[id] )
 
 			#fid.close()
 

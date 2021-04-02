@@ -646,8 +646,8 @@ class Map( inkex.Effect ):
 		if self.options.ids:
 			# Traverse the selected objects
 			for id in self.options.ids:
-				transform = self.recursivelyGetEnclosingTransform( self.selected[id] )
-				self.recursivelyTraverseSvg( [self.selected[id]], transform, find_bbox=True )
+				transform = self.recursivelyGetEnclosingTransform( self.svg.selected[id] )
+				self.recursivelyTraverseSvg( [self.svg.selected[id]], transform, find_bbox=True )
 			# Use as the vertical centerline the midpoint between
 			# the bounding box's extremal X coordinates
 			self.cx = 0.5 * ( self.xmin + self.xmax )

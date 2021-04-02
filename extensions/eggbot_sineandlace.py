@@ -28,7 +28,6 @@
 
 import inkex
 import simplepath
-import simplestyle
 from math import *
 
 import lxml.etree
@@ -326,9 +325,9 @@ class SpiroSine( inkex.Effect ):
 
 		if self.options.ids:
 			if len( self.options.ids ) == 2:
-				attr = self.selected[self.options.ids[0]].attrib
-				desc1 = self.selected[self.options.ids[0]].get( inkex.addNS( 'desc', self.nsPrefix ) )
-				desc2 = self.selected[self.options.ids[1]].get( inkex.addNS( 'desc', self.nsPrefix ) )
+				attr = self.svg.selected[self.options.ids[0]].attrib
+				desc1 = self.svg.selected[self.options.ids[0]].get( inkex.addNS( 'desc', self.nsPrefix ) )
+				desc2 = self.svg.selected[self.options.ids[1]].get( inkex.addNS( 'desc', self.nsPrefix ) )
 				if ( not desc1 ) or ( not desc2 ):
 					inkex.errormsg( 'Selected objects do not smell right' )
 					return

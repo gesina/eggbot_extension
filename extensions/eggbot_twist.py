@@ -526,7 +526,7 @@ class Twist( inkex.Effect ):
 		if self.options.ids:
 			# Traverse the selected objects
 			for id in self.options.ids:
-				self.recursivelyTraverseSvg( [self.selected[id]] )
+				self.recursivelyTraverseSvg( [self.svg.selected[id]] )
 		else:
 			# Traverse the entire document
 			self.recursivelyTraverseSvg( self.document.getroot() )
