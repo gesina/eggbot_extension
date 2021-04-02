@@ -409,11 +409,11 @@ class Map( inkex.Effect ):
 				w = float( node.get( 'width', '0' ) )
 				h = float( node.get( 'height', '0' ) )
 				a = []
-				a.append( ['M ', [x, y]] )
-				a.append( [' l ', [w, 0]] )
-				a.append( [' l ', [0, h]] )
-				a.append( [' l ', [-w, 0]] )
-				a.append( [' Z', []] )
+				a.append( ['M', [x, y]] )
+				a.append( ['l', [w, 0]] )
+				a.append( ['l', [0, h]] )
+				a.append( ['l', [-w, 0]] )
+				a.append( ['Z', []] )
 				self.getPathVertices( str(Path( a )), node, matNew, find_bbox )
 
 			elif node.tag == inkex.addNS( 'line', 'svg' ) or node.tag == 'line':
@@ -433,8 +433,8 @@ class Map( inkex.Effect ):
 				if ( not x1 ) or ( not y1 ) or ( not x2 ) or ( not y2 ):
 					pass
 				a = []
-				a.append( ['M ', [x1, y1]] )
-				a.append( [' L ', [x2, y2]] )
+				a.append( ['M', [x1, y1]] )
+				a.append( ['L', [x2, y2]] )
 				self.getPathVertices( str(Path( a )), node, matNew, find_bbox )
 
 			elif node.tag == inkex.addNS( 'polyline', 'svg' ) or node.tag == 'polyline':
@@ -454,7 +454,7 @@ class Map( inkex.Effect ):
 					pass
 
 				pa = pl.split()
-				d = "".join( ["M " + pa[i] if i == 0 else " L " + pa[i] for i in range( 0, len( pa ) )] )
+				d = " ".join( ["M" + pa[i] if i == 0 else "L" + pa[i] for i in range( 0, len( pa ) )] )
 				self.getPathVertices( d, node, matNew, find_bbox )
 
 			elif node.tag == inkex.addNS( 'polygon', 'svg' ) or node.tag == 'polygon':
@@ -474,8 +474,8 @@ class Map( inkex.Effect ):
 					pass
 
 				pa = pl.split()
-				d = "".join( ["M " + pa[i] if i == 0 else " L " + pa[i] for i in range( 0, len( pa ) )] )
-				d += " Z"
+				d = " ".join( ["M" + pa[i] if i == 0 else "L" + pa[i] for i in range( 0, len( pa ) )] )
+				d += "Z"
 				self.getPathVertices( d, node, matNew, find_bbox )
 
 			elif node.tag == inkex.addNS( 'ellipse', 'svg' ) or \

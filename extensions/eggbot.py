@@ -606,11 +606,11 @@ class EggBot( inkex.Effect ):
 						if t:
 							newpath.set( 'transform', t )
 						a = []
-						a.append( ['M ', [x, y]] )
-						a.append( [' l ', [w, 0]] )
-						a.append( [' l ', [0, h]] )
-						a.append( [' l ', [-w, 0]] )
-						a.append( [' Z', []] )
+						a.append( ['M', [x, y]] )
+						a.append( ['l', [w, 0]] )
+						a.append( ['l', [0, h]] )
+						a.append( ['l', [-w, 0]] )
+						a.append( ['Z', []] )
 						newpath.set( 'd', str(Path( a )) )
 						self.plotPath( newpath, matNew )
 						if ( not self.bStopped ):	#an "index" for resuming plots quickly-- record last complete path
@@ -650,8 +650,8 @@ class EggBot( inkex.Effect ):
 						if t:
 							newpath.set( 'transform', t )
 						a = []
-						a.append( ['M ', [x1, y1]] )
-						a.append( [' L ', [x2, y2]] )
+						a.append( ['M', [x1, y1]] )
+						a.append( ['L', [x2, y2]] )
 						newpath.set( 'd', str(Path( a )) )
 						self.plotPath( newpath, matNew )
 						if ( not self.bStopped ):	#an "index" for resuming plots quickly-- record last complete path
@@ -691,10 +691,10 @@ class EggBot( inkex.Effect ):
 						# Issue 29: pre 2.5.? versions of Python do not have
 						#    "statement-1 if expression-1 else statement-2"
 						# which came out of PEP 308, Conditional Expressions
-						#d = "".join( ["M " + pa[i] if i == 0 else " L " + pa[i] for i in range( 0, len( pa ) )] )
-						d = "M " + pa[0]
+						#d = "".join( ["M" + pa[i] if i == 0 else "L" + pa[i] for i in range( 0, len( pa ) )] )
+						d = "M" + pa[0]
 						for i in range( 1, len( pa ) ):
-							d += " L " + pa[i]
+							d += "L" + pa[i]
 						newpath = lxml.etree.Element( inkex.addNS( 'path', 'svg' ) )
 						newpath.set( 'd', d );
 						s = node.get( 'style' )
@@ -737,11 +737,11 @@ class EggBot( inkex.Effect ):
 						# Issue 29: pre 2.5.? versions of Python do not have
 						#    "statement-1 if expression-1 else statement-2"
 						# which came out of PEP 308, Conditional Expressions
-						#d = "".join( ["M " + pa[i] if i == 0 else " L " + pa[i] for i in range( 0, len( pa ) )] )
-						d = "M " + pa[0]
+						#d = "".join( ["M" + pa[i] if i == 0 else "L" + pa[i] for i in range( 0, len( pa ) )] )
+						d = "M" + pa[0]
 						for i in range( 1, len( pa ) ):
-							d += " L " + pa[i]
-						d += " Z"
+							d += "L" + pa[i]
+						d += "Z"
 						newpath = lxml.etree.Element( inkex.addNS( 'path', 'svg' ) )
 						newpath.set( 'd', d );
 						s = node.get( 'style' )

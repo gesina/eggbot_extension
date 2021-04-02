@@ -203,7 +203,7 @@ def drawSine( cycles=8, rn=0, rm=0, nPoints=50, offset=[0, 0],
 
 	# Starting point in the path is ( x, sin(x) )
 	pathData = []
-	pathData.append(['M ', [ x1 , y1 ] ] )
+	pathData.append(['M', [ x1 , y1 ] ] )
 
 	for i in range( 1, nPoints ):
 
@@ -227,15 +227,15 @@ def drawSine( cycles=8, rn=0, rm=0, nPoints=50, offset=[0, 0],
 
 		# Add another segment to the plot
 		if spline:
-			pathData.append( [' C ',
+			pathData.append( ['C',
 					 [ x1 + ( dx1 * xThird ),
 					   y1 + ( dy1 * xThird ),
 					   x2 - ( dx2 * xThird ),
 					   y2 - ( dy2 * xThird ),
 					   x2, y2 ] ] )
 		else:
-			pathData.append([' L ', [ x1, y1 ] ] )
-			pathData.append([' L ', [ x2, y2 ] ] )
+			pathData.append(['L', [ x1, y1 ] ] )
+			pathData.append(['L', [ x2, y2 ] ] )
 		x1  = x2
 		y1  = y2
 		dx1 = dx2
@@ -362,7 +362,7 @@ class SpiroSine( inkex.Effect ):
 			'd': str(Path( path_data )),
 			inkex.addNS( 'desc', self.nsPrefix ): path_desc }
 		newpath = lxml.etree.SubElement( self.document.getroot(),
-			inkex.addNS( 'path', 'svg '), path_attrs, nsmap=inkex.NSS )
+			inkex.addNS( 'path', 'svg'), path_attrs, nsmap=inkex.NSS )
 
 if __name__ == '__main__':
 
