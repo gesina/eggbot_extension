@@ -775,7 +775,7 @@ class Eggbot_Hatch( inkex.Effect ):
 		# for path in self.paths:
 
 	def recursivelyTraverseSvg( self, aNodeList,
-		matCurrent=[[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]],
+		matCurrent=((1.0, 0.0, 0.0), (0.0, 1.0, 0.0)),
 		parent_visibility='visible' ):
 		'''
 		Recursively walk the SVG document, building polygon vertex lists
@@ -820,8 +820,7 @@ class Eggbot_Hatch( inkex.Effect ):
 				pass
 
 			# first apply the current matrix transform to this node's tranform
-			matNew = simpletransform.composeTransform( matCurrent,
-				Transform( node.get( "transform" ) ).matrix )
+			matNew = ( Transform(matCurrent) * Transform( node.get( "transform" ) ) ).matrix
 				
 			if node.tag == inkex.addNS( 'g', 'svg' ) or node.tag == 'g':
 				self.recursivelyTraverseSvg( node, matNew, parent_visibility=v )
@@ -853,7 +852,7 @@ class Eggbot_Hatch( inkex.Effect ):
 					y = float( node.get( 'y', '0' ) )
 					# Note: the transform has already been applied
 					if ( x != 0 ) or ( y != 0 ):
-						matNew2 = composeTransform( matNew, Transform( 'translate(%f,%f)' % (x,y) ).matrix )
+						matNew2 = ( Transform(matNew) * Transform( 'translate(%f,%f)' % (x,y) ) ).matrix
 					else:
 						matNew2 = matNew
 					v = node.get( 'visibility', v )
@@ -873,7 +872,7 @@ class Eggbot_Hatch( inkex.Effect ):
 						# if self.options.crossHatch:
                          			# Now loop over our hatch lines looking for intersections
 						for h in self.grid:
-		                                	interstices( self, (h[0], h[1]), (h[2], h[3]), self.paths, self.hatches, self.options.holdBackHatchFromEdges, self.options.holdBackSteps )
+							interstices( self, (h[0], h[1]), (h[2], h[3]), self.paths, self.hatches, self.options.holdBackHatchFromEdges, self.options.holdBackSteps )
 					# if bHaveGrid
 					else:	
 						inkex.errormsg( ' Nothing to plot' )

@@ -478,7 +478,7 @@ class EggBot( inkex.Effect ):
 				self.engraverOff()
 
 	def recursivelyTraverseSvg( self, aNodeList,
-			matCurrent=[[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]],
+			matCurrent=((1.0, 0.0, 0.0), (0.0, 1.0, 0.0)),
 			parent_visibility='visible' ):
 		"""
 		Recursively traverse the svg file to plot out all of the
@@ -501,7 +501,7 @@ class EggBot( inkex.Effect ):
 				continue
 
 			# first apply the current matrix transform to this node's tranform
-			matNew = composeTransform( matCurrent, Transform( node.get( "transform" ) ).matrix )
+			matNew = ( Transform(matCurrent) * Transform( node.get( "transform" ) ) ).matrix
 
 			if node.tag == inkex.addNS( 'g', 'svg' ) or node.tag == 'g':
 
@@ -537,7 +537,7 @@ class EggBot( inkex.Effect ):
 						y = float( node.get( 'y', '0' ) )
 						# Note: the transform has already been applied
 						if ( x != 0 ) or (y != 0 ):
-							matNew2 = composeTransform( matNew, Transform( 'translate(%f,%f)' % (x,y) ).matrix )
+							matNew2 = ( Transform(matNew) * Transform( 'translate(%f,%f)' % (x,y) ) ).matrix
 						else:
 							matNew2 = matNew
 						v = node.get( 'visibility', v )

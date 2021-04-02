@@ -312,7 +312,7 @@ class Map( inkex.Effect ):
 		self.paths[node] = newPath
 
 	def recursivelyTraverseSvg( self, aNodeList,
-		matCurrent=[[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]],
+		matCurrent=((1.0, 0.0, 0.0), (0.0, 1.0, 0.0)),
 		parent_visibility='visible', find_bbox=False ):
 
 		'''
@@ -344,7 +344,7 @@ class Map( inkex.Effect ):
 				pass
 
 			# First apply the current matrix transform to this node's tranform
-			matNew = simpletransform.composeTransform( matCurrent, Transform( node.get( "transform" ) ).matrix )
+			matNew = (Transform( matCurrent ) *  Transform( node.get( "transform" ) )).matrix
 
 			if node.tag == inkex.addNS( 'g', 'svg' ) or node.tag == 'g':
 
@@ -377,9 +377,9 @@ class Map( inkex.Effect ):
 					y = float( node.get( 'y', '0' ) )
 					# Note: the transform has already been applied
 					if ( x != 0 ) or (y != 0 ):
-					       	matNew2 = composeTransform( matNew, Transform( 'translate(%f,%f)' % (x,y) ).matrix )
+						matNew2 = (Transform( matNew ) * Transform( 'translate(%f,%f)' % (x,y) )).matrix
 					else:
-					       	matNew2 = matNew
+						matNew2 = matNew
 					v = node.get( 'visibility', v )
 					self.recursivelyTraverseSvg( refnode, matNew2, v, find_bbox )
 
@@ -624,7 +624,7 @@ class Map( inkex.Effect ):
 				if parent_transform is None:
 					return tr
 				else:
-					return simpletransform.composeTransform( parent_transform, tr )
+					return ( Transform(parent_transform) * Transform(tr) ).matrix
 		else:
 			return self.docTransform
 
