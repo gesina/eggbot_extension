@@ -27,7 +27,6 @@
 
 import inkex
 import gettext
-import simplestyle
 
 import lxml.etree
 
@@ -59,7 +58,7 @@ class EggBot_PostProcessTraceBitmap( inkex.Effect ):
 			stroke, fill, color = ( 'none', 'none', 'unknown' )
 
 			# Get the paths style attribute
-			style = simplestyle.parseStyle( path.get( 'style', '' ) )
+			style = dict(inkex.Style.parse_str( path.get( 'style', '' ) ))
 			# Obtain the fill color from the path's style attribute
 			if 'fill' in style:
 				color = style['fill']
