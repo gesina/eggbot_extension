@@ -572,7 +572,7 @@ class Map( inkex.Effect ):
 
 			elif node.tag == inkex.addNS( 'path', 'svg' ):
 
-				if self.paths.has_key( node ):
+				if node in self.paths:
 					# Change the path data to be the new path
 					node.set( 'd', self.paths[node][1:] )
 					del self.paths[node]
@@ -586,7 +586,7 @@ class Map( inkex.Effect ):
 				node.tag == inkex.addNS( 'circle', 'svg' ) or node.tag == 'circle':
 				# Replace this element with a <path> element
 
-				if self.paths.has_key( node ):
+				if node in self.paths:
 					# Create a new <path> element
 					# We simply copy all of the attributes from
 					# the old element to this new element even though

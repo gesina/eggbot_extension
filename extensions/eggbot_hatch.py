@@ -435,7 +435,7 @@ def interstices( self, P1, P2, paths, hatches, bHoldBackHatches, fHoldBackSteps 
 	i = 0
 	while i < ( len( dAndA ) - 1 ):
 	#for i in range( 0, len( sa ) - 1, 2 ):
-		if not hatches.has_key( dAndA[i][1] ):
+		if dAndA[i][1] not in hatches:
 			hatches[dAndA[i][1]] = []
 
 		x1 = P1[0] + dAndA[i][0] * ( P2[0] - P1[0] )
@@ -1275,7 +1275,7 @@ class Eggbot_Hatch( inkex.Effect ):
 		# To implement
 		for key in self.hatches:
 			direction = True
-			if self.transforms.has_key( key ):
+			if key in self.transforms:
 				transform = inverseTransform( self.transforms[key] )
 				# Determine the scaled stroke width for a hatch line
 				# We produce a line segment of unit length, transform

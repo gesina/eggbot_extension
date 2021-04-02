@@ -231,11 +231,11 @@ class AcrosticText( inkex.Effect ):
 
 		# Get the two type faces
 		name1 = self.options.face1
-		if map_our_names_to_hersheydata.has_key( name1 ):
+		if name1 in map_our_names_to_hersheydata:
 			name1 = map_our_names_to_hersheydata[name1]
 		face1 = eval( 'hersheydata.' + name1 )
 		name2 = self.options.face2
-		if map_our_names_to_hersheydata.has_key( name2 ):
+		if name2 in map_our_names_to_hersheydata:
 			name2 = map_our_names_to_hersheydata[name2]
 		face2 = eval( 'hersheydata.' + name2 )
 

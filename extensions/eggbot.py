@@ -834,7 +834,7 @@ class EggBot( inkex.Effect ):
 					pass
 				elif (node.tag == inkex.addNS( 'text', 'svg' ) or node.tag == 'text' or
 					node.tag == inkex.addNS( 'flowRoot', 'svg' ) or node.tag == 'flowRoot'):
-					if not self.warnings.has_key( 'text' ):
+					if 'text' not in self.warnings:
 						inkex.errormsg( gettext.gettext( 'Warning: in layer "' + 
 							self.sCurrentLayerName + '" unable to draw text; ' +
 							'please convert it to a path first.  Consider using the ' +
@@ -843,7 +843,7 @@ class EggBot( inkex.Effect ):
 						self.warnings['text'] = 1
 					pass
 				elif node.tag == inkex.addNS( 'image', 'svg' ) or node.tag == 'image':
-					if not self.warnings.has_key( 'image' ):
+					if 'image' not in self.warnings:
 						inkex.errormsg( gettext.gettext( 'Warning: in layer "' + 
 							self.sCurrentLayerName + '" unable to draw bitmap images; ' +
 							'please convert them to line art first.  Consider using the "Trace bitmap..." ' +
@@ -876,7 +876,7 @@ class EggBot( inkex.Effect ):
 					# be very useful.
 					pass
 				else:
-					if not self.warnings.has_key( str( node.tag ) ):
+					if str( node.tag ) not in self.warnings:
 						t = str( node.tag ).split( '}' )
 						inkex.errormsg( gettext.gettext( 'Warning: in layer "' + 
 							self.sCurrentLayerName + '" unable to draw <' + str( t[-1] ) +

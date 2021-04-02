@@ -135,7 +135,7 @@ def renderText( parent, markup ):
 	spacing = 3  # spacing between letters
 
 	for Face, Text in markup:
-		if map_our_names_to_hersheydata.has_key(Face):
+		if Face in map_our_names_to_hersheydata:
 			Face = map_our_names_to_hersheydata[Face]
 		font = eval('hersheydata.' + Face)
 		letterVals = [ord(q) - 32 for q in Text]
@@ -203,7 +203,7 @@ def pickFace( family, bold=False, italics=False, emphasis=False ):
 	if italics:
 		i = '1'
 
-	if family_to_font.has_key( family + b + i ):
+	if ( family + b + i ) in family_to_font:
 		return family_to_font[family + b + i]
 
 	return family
@@ -245,7 +245,7 @@ def processMarkup( text, family='sans' ):
 			j = text.find( ';', i+1 )
 			if ( j != -1 ):
 				eref = text[i:j+1]
-				if entity_refs.has_key(eref):
+				if eref in entity_refs:
 					outstr += entity_refs[eref]
 					i = j + 1
 				else:
@@ -325,7 +325,7 @@ def processMarkup( text, family='sans' ):
 						tag = normalize_possible_EMS_string( tag )
 					if (
 							( tag not in generic_families )
-							and ( not map_our_names_to_hersheydata.has_key( tag ) )
+							and ( tag not in map_our_names_to_hersheydata )
 							and ( not bValidEMSName )
 						):
 						if close:
