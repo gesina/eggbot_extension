@@ -26,6 +26,8 @@ import cubicsuperpath
 import cspsubdiv
 import bezmisc
 
+import lxml.etree
+
 N_PAGE_WIDTH = 3200
 N_PAGE_HEIGHT = 800
 
@@ -589,7 +591,7 @@ class Map( inkex.Effect ):
 					# We simply copy all of the attributes from
 					# the old element to this new element even though
 					# some of the attributes are no longer relevant
-					newNode = inkex.etree.Element( inkex.addNS( 'path', 'svg' ), node.attrib )
+					newNode = lxml.etree.Element( inkex.addNS( 'path', 'svg' ), node.attrib )
 					newNode.set( 'd', self.paths[node][1:] )
 
 					# Now replace the old element with this element

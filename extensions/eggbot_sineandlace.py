@@ -31,6 +31,8 @@ import simplepath
 import simplestyle
 from math import *
 
+import lxml.etree
+
 VERSION = 1
 
 def parseDesc( str ):
@@ -360,7 +362,7 @@ class SpiroSine( inkex.Effect ):
 			'style': simplestyle.formatStyle( style ),
 			'd': simplepath.formatPath( path_data ),
 			inkex.addNS( 'desc', self.nsPrefix ): path_desc }
-		newpath = inkex.etree.SubElement( self.document.getroot(),
+		newpath = lxml.etree.SubElement( self.document.getroot(),
 			inkex.addNS( 'path', 'svg '), path_attrs, nsmap=inkex.NSS )
 
 if __name__ == '__main__':

@@ -33,6 +33,8 @@ import ebb_motion		# https://github.com/evil-mad/plotink	Requires version 0.2 or
 
 import eggbot_conf		#Some settings can be changed here.
 
+import lxml.etree
+
 F_DEFAULT_SPEED = 1
 N_PEN_DOWN_DELAY = 400	# delay (ms) for the pen to go down before the next move
 N_PEN_UP_DELAY = 400	# delay (ms) for the pen to up down before the next move
@@ -247,7 +249,7 @@ class EggBot( inkex.Effect ):
 		self.svgDataRead = False
 		self.recursiveEggbotDataScan( self.svg )
 		if ( not self.svgDataRead ):    #if there is no eggbot data, add some:
-			eggbotlayer = inkex.etree.SubElement( self.svg, 'eggbot' )
+			eggbotlayer = lxml.etree.SubElement( self.svg, 'eggbot' )
 			eggbotlayer.set( 'layer', str( 0 ) )
 			eggbotlayer.set( 'node', str( 0 ) )
 			eggbotlayer.set( 'lastpath', str( 0 ) )
@@ -591,7 +593,7 @@ class EggBot( inkex.Effect ):
 						doWePlotThisPath = True
 					if (doWePlotThisPath):
 						self.pathcount += 1
-						newpath = inkex.etree.Element( inkex.addNS( 'path', 'svg' ) )
+						newpath = lxml.etree.Element( inkex.addNS( 'path', 'svg' ) )
 						x = float( node.get( 'x' ) )
 						y = float( node.get( 'y' ) )
 						w = float( node.get( 'width' ) )
@@ -635,7 +637,7 @@ class EggBot( inkex.Effect ):
 						doWePlotThisPath = True
 					if (doWePlotThisPath):
 						self.pathcount += 1
-						newpath = inkex.etree.Element( inkex.addNS( 'path', 'svg' ) )
+						newpath = lxml.etree.Element( inkex.addNS( 'path', 'svg' ) )
 						x1 = float( node.get( 'x1' ) )
 						y1 = float( node.get( 'y1' ) )
 						x2 = float( node.get( 'x2' ) )
@@ -692,7 +694,7 @@ class EggBot( inkex.Effect ):
 						d = "M " + pa[0]
 						for i in range( 1, len( pa ) ):
 							d += " L " + pa[i]
-						newpath = inkex.etree.Element( inkex.addNS( 'path', 'svg' ) )
+						newpath = lxml.etree.Element( inkex.addNS( 'path', 'svg' ) )
 						newpath.set( 'd', d );
 						s = node.get( 'style' )
 						if s:
@@ -739,7 +741,7 @@ class EggBot( inkex.Effect ):
 						for i in range( 1, len( pa ) ):
 							d += " L " + pa[i]
 						d += " Z"
-						newpath = inkex.etree.Element( inkex.addNS( 'path', 'svg' ) )
+						newpath = lxml.etree.Element( inkex.addNS( 'path', 'svg' ) )
 						newpath.set( 'd', d );
 						s = node.get( 'style' )
 						if s:
@@ -803,7 +805,7 @@ class EggBot( inkex.Effect ):
 								'0 1 0 %f,%f ' % ( x2, cy ) + \
 								'A %f,%f ' % ( rx, ry ) + \
 								'0 1 0 %f,%f' % ( x1, cy )
-							newpath = inkex.etree.Element( inkex.addNS( 'path', 'svg' ) )
+							newpath = lxml.etree.Element( inkex.addNS( 'path', 'svg' ) )
 							newpath.set( 'd', d );
 							s = node.get( 'style' )
 							if s:

@@ -55,6 +55,8 @@ import math
 import inkex
 import simplestyle
 
+import lxml.etree
+
 # Initialize the psuedo random number generator
 random.seed()
 
@@ -81,7 +83,7 @@ def draw_SVG_path( pts, c, t, parent ):
 		return
 	style = { 'stroke':c, 'stroke-width':str( t ), 'fill':'none' }
 	line_attribs = { 'style':simplestyle.formatStyle( style ),'d':d }
-	inkex.etree.SubElement( parent, inkex.addNS( 'path','svg' ), line_attribs )
+	lxml.etree.SubElement( parent, inkex.addNS( 'path','svg' ), line_attribs )
 
 # Add a SVG rect element to the document
 
@@ -90,7 +92,7 @@ def draw_SVG_rect( x, y, w, h, c, t, fill, parent ):
 	rect_attribs = { 'style':simplestyle.formatStyle( style ),
 					  'x':str( x ), 'y':str( y ),
 					  'width':str( w ), 'height':str( h ) }
-	inkex.etree.SubElement( parent, inkex.addNS( 'rect', 'svg' ),
+	lxml.etree.SubElement( parent, inkex.addNS( 'rect', 'svg' ),
 							rect_attribs )
 
 class Maze( inkex.Effect ):
@@ -309,7 +311,7 @@ class Maze( inkex.Effect ):
 			inkex.addNS( 'label', 'inkscape' ) : '1 - Maze',
 			inkex.addNS( 'groupmode', 'inkscape' ) : 'layer',
 			'transform' : t }
-		maze_layer = inkex.etree.SubElement( self.document.getroot(), 'g', attribs )
+		maze_layer = lxml.etree.SubElement( self.document.getroot(), 'g', attribs )
 		draw_SVG_path( self.path, "#000000", float( 1 / self.scale ), maze_layer )
 
 		# Now draw the solution in red in layer "2 - Solution"
@@ -318,7 +320,7 @@ class Maze( inkex.Effect ):
 			inkex.addNS( 'label', 'inkscape' ) : '2 - Solution',
 			inkex.addNS( 'groupmode', 'inkscape' ) : 'layer',
 			'transform' : t }
-		maze_layer = inkex.etree.SubElement( self.document.getroot(), 'g', attribs )
+		maze_layer = lxml.etree.SubElement( self.document.getroot(), 'g', attribs )
 
 		# Mark the starting cell
 

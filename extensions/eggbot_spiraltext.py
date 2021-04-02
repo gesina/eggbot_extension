@@ -76,6 +76,8 @@ import simplestyle
 import math
 import string
 
+import lxml.etree
+
 # Mapping table to map the names used here to the corresponding
 # names used in hersheydata.py.  This helps prevent end users from
 # being impacted by a name change in hersheydata.py.  This can also
@@ -121,13 +123,13 @@ def draw_svg_text(char, face, offset, vertoffset, parent):
 		pathString = pathString[i:] #portion after first move
 		trans = 'translate(' + str(midpoint) + ',' + str(vertoffset) + ')'
 		text_attribs = {'style':simplestyle.formatStyle(style), 'd':pathString, 'transform':trans}
-		inkex.etree.SubElement(parent, inkex.addNS('path','svg'), text_attribs)
+		lxml.etree.SubElement(parent, inkex.addNS('path','svg'), text_attribs)
 	return midpoint + float(splitString[1]) 	#new offset value
 
 def renderText( parent, markup ):
 	# Embed text in group to make manipulation easier:
 	g_attribs = {inkex.addNS('label','inkscape'):'Hershey Text' }
-	g = inkex.etree.SubElement(parent, 'g', g_attribs)
+	g = lxml.etree.SubElement(parent, 'g', g_attribs)
 
 	w = 0  #Initial spacing offset
 	spacing = 3  # spacing between letters

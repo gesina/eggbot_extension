@@ -27,6 +27,8 @@ import hersheydata          #data file w/ Hershey font data
 import inkex
 import simplestyle
 
+import lxml.etree
+
 Debug = False
 FONT_GROUP_V_SPACING = 45
 
@@ -42,7 +44,7 @@ def draw_svg_text(char, face, offset, vertoffset, parent):
         pathString = pathString[splitpoint:] #portion after first move
         trans = 'translate(' + str(midpoint) + ',' + str(vertoffset) + ')'
         text_attribs = {'style':simplestyle.formatStyle(style), 'd':pathString, 'transform':trans}
-        inkex.etree.SubElement(parent, inkex.addNS('path','svg'), text_attribs) 
+        lxml.etree.SubElement(parent, inkex.addNS('path','svg'), text_attribs)
     return midpoint + float(splitString[1])   #new offset value
 
 def svg_text_width(char, face, offset):
@@ -77,7 +79,7 @@ class Hershey( inkex.Effect ):
 
         # Embed text in group to make manipulation easier:
         g_attribs = {inkex.addNS('label','inkscape'):'Hershey Text' }
-        g = inkex.etree.SubElement(self.current_layer, 'g', g_attribs)
+        g = lxml.etree.SubElement(self.current_layer, 'g', g_attribs)
 
         scale = self.unittouu('1px')    # convert to document units
         font = eval('hersheydata.' + str(self.options.fontface))

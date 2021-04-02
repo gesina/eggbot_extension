@@ -39,6 +39,8 @@ import cubicsuperpath
 import cspsubdiv
 import bezmisc
 
+import lxml.etree
+
 def subdivideCubicPath( sp, flat, i=1 ):
 
 	'''
@@ -461,7 +463,7 @@ class Twist( inkex.Effect ):
 			#was: if not parent:
 			if parent is None:
 				parent = self.document.getroot()
-			g = inkex.etree.SubElement( parent, inkex.addNS( 'g', 'svg' ) )
+			g = lxml.etree.SubElement( parent, inkex.addNS( 'g', 'svg' ) )
 
 			# Move node to be a child of this new <g> element
 			g.append( node )
@@ -482,7 +484,7 @@ class Twist( inkex.Effect ):
 		line_attribs = { 'style':simplestyle.formatStyle( style ), 'd': path }
 		if ( cloneTransform != None ) and ( cloneTransform != '' ):
 			line_attribs['transform'] = cloneTransform
-		inkex.etree.SubElement( g, inkex.addNS( 'path', 'svg' ), line_attribs )
+		lxml.etree.SubElement( g, inkex.addNS( 'path', 'svg' ), line_attribs )
 
 	def twist( self, ratio ):
 

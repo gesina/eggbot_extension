@@ -30,6 +30,7 @@
 import hersheydata			# data file w/ Hershey font data
 import inkex
 import simplestyle
+import lxml.etree
 
 WIDTH     = 3200
 HEIGHT    = 800
@@ -81,7 +82,7 @@ def draw_svg_text(char, face, offset, vertoffset, parent):
 		pathString = pathString[i:] #portion after first move
 		trans = 'translate(' + str(midpoint) + ',' + str(vertoffset) + ')'
 		text_attribs = {'style':simplestyle.formatStyle(style), 'd':pathString, 'transform':trans}
-		inkex.etree.SubElement(parent, inkex.addNS('path','svg'), text_attribs)
+		lxml.etree.SubElement(parent, inkex.addNS('path','svg'), text_attribs)
 	return midpoint + int(splitString[1]) 	#new offset value
 
 def renderText( parent, w, y, text, typeface ):
@@ -132,7 +133,7 @@ def renderLine( parent, x, y, line, typeface1, typeface2 ):
 	line = line[1:]
 	if line == '':
 		return
-	g = inkex.etree.SubElement( parent, 'g' )
+	g = lxml.etree.SubElement( parent, 'g' )
 	renderText( g, x, y, line, typeface2 )
 
 class AcrosticText( inkex.Effect ):
@@ -253,12 +254,12 @@ class AcrosticText( inkex.Effect ):
 			attribs = { 'transform' : 'matrix(-%f,0,0,-%f,%d,%d)' % ( scale_x, scale_y, doc_width, doc_height ) }
 		else:
 			attribs = { 'transform' : 'scale(%f,%f)' % ( scale_x, scale_y ) }
-		container = inkex.etree.SubElement( self.document.getroot(), 'g', attribs )
+		container = lxml.etree.SubElement( self.document.getroot(), 'g', attribs )
 
 		# Finally, we render each line of text
 		for i in range( 0, len( lines ) ):
 			if lines[i] != '':
-				g = inkex.etree.SubElement( container, 'g' )
+				g = lxml.etree.SubElement( container, 'g' )
 				renderLine( g, x, y, lines[i], face1, face2 )
 			y += MAX_H + LINE_SKIP
 

@@ -113,6 +113,8 @@ import bezmisc
 import math
 import plot_utils		# https://github.com/evil-mad/plotink
 
+import lxml.etree
+
 
 N_PAGE_WIDTH = 3200
 N_PAGE_HEIGHT = 800
@@ -1110,7 +1112,7 @@ class Eggbot_Hatch( inkex.Effect ):
 		#was: if not parent:
 		if parent is None:
 			parent = self.document.getroot()
-		g = inkex.etree.SubElement( parent, inkex.addNS( 'g', 'svg' ) )
+		g = lxml.etree.SubElement( parent, inkex.addNS( 'g', 'svg' ) )
 		# Move node to be a child of this new <g> element
 		g.append( node )
 
@@ -1141,7 +1143,7 @@ class Eggbot_Hatch( inkex.Effect ):
 			tran = node.get( 'transform' )
 			if ( tran != None ) and ( tran != '' ):
 				line_attribs['transform'] = tran
-			inkex.etree.SubElement( g, inkex.addNS( 'path', 'svg' ), line_attribs )
+			lxml.etree.SubElement( g, inkex.addNS( 'path', 'svg' ), line_attribs )
 
 	def makeHatchGrid( self, angle, spacing, init=True ):	# returns True if succeeds in making grid, else False
 

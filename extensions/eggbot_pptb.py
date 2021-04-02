@@ -29,6 +29,8 @@ import inkex
 import gettext
 import simplestyle
 
+import lxml.etree
+
 class EggBot_PostProcessTraceBitmap( inkex.Effect ):
 
 	def __init__(self):
@@ -76,7 +78,7 @@ class EggBot_PostProcessTraceBitmap( inkex.Effect ):
 			path.set( 'style', simplestyle.formatStyle( style ) )
 
 			# Create a group <g> element under the document root
-			layer = inkex.etree.SubElement( root, inkex.addNS( 'g', 'svg' ) )
+			layer = lxml.etree.SubElement( root, inkex.addNS( 'g', 'svg' ) )
 
 			# Add Inkscape layer attributes to this new group
 			count += 1
