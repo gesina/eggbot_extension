@@ -104,7 +104,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import inkex
-import simpletransform
 from inkex.transforms import Transform
 
 import inkex.bezier
@@ -1279,10 +1278,10 @@ class Eggbot_Hatch( inkex.Effect ):
 				# We produce a line segment of unit length, transform
 				# its endpoints and then determine the length of the
 				# resulting line segment.
-				pt1 = [0, 0]
-				pt2 = [s, s]
-				simpletransform.applyTransformToPoint( transform, pt1 )
-				simpletransform.applyTransformToPoint( transform, pt2 )
+				pt1 = (0, 0)
+				pt2 = (s, s)
+				pt1 = inkex.Transform( transform ).apply_to_point( pt1 )
+				pt2 = inkex.Transform( transform ).apply_to_point( pt2 )
 				dx = pt2[0] - pt1[0]
 				dy = pt2[1] - pt1[1]
 				stroke_width = math.sqrt( dx * dx + dy * dy )
@@ -1319,8 +1318,8 @@ class Eggbot_Hatch( inkex.Effect ):
 					# after the fact (i.e., what's this tranform here for?).
 					# So, we compute the inverse transform and apply it here.
 					if transform != None:
-						simpletransform.applyTransformToPoint( transform, pt1 )
-						simpletransform.applyTransformToPoint( transform, pt2 )
+						pt1 = inkex.Transform( transform ).apply_to_point( pt1 )
+						pt2 = inkex.Transform( transform ).apply_to_point( pt2 )
 					# Now generate the path data for the <path>
 					if direction:
 						# Go this direction
@@ -1360,8 +1359,8 @@ class Eggbot_Hatch( inkex.Effect ):
 					# after the fact (i.e., what's this tranform here for?).
 					# So, we compute the inverse transform and apply it here.
 					if transform != None:
-						simpletransform.applyTransformToPoint( transform, pt1 )
-						simpletransform.applyTransformToPoint( transform, pt2 )
+						pt1 = inkex.Transform( transform ).apply_to_point( pt1 )
+						pt2 = inkex.Transform( transform ).apply_to_point( pt2 )
 
 					# Now generate the path data for the <path> 
 					# BUT we want to combine as many paths as possible to reduce pen lifts.

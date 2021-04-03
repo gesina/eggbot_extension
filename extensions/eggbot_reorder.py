@@ -84,7 +84,7 @@ def find_ordering_naive( objlist ):
 def conv( x, y, trans_matrix=None ):
 	"""
 	not used currently, but can be used to apply a translation matrix to an (x, y) pair
-	I'm sure there is a better way to do this using simpletransform or it's ilk
+	I'm sure there is a better way to do this using inkex.Transform or it's ilk
 	"""
 
 	if trans_matrix:

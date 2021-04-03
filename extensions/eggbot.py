@@ -20,13 +20,13 @@
 
 # TODO: Add and honor advisory locking around device open/close for non Win32
 
-from simpletransform import *
 from inkex.transforms import Transform
 
 import gettext
 import inkex
 import string
 import time
+import math
 import ebb_serial		# https://github.com/evil-mad/plotink
 import plot_utils		# https://github.com/evil-mad/plotink
 import ebb_motion		# https://github.com/evil-mad/plotink	Requires version 0.2 or newer.

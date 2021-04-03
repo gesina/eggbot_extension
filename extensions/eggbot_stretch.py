@@ -20,8 +20,6 @@
 import math
 import inkex
 
-import simpletransform
-from inkex.transforms import Transform
 import inkex.bezier
 import bezmisc
 
@@ -216,7 +214,7 @@ class Map( inkex.Effect ):
 				if ( vinfo[2] != 0 ) and ( vinfo[3] != 0 ):
 					sx = self.docWidth / float( vinfo[2] )
 					sy = self.docHeight / float( vinfo[3] )
-					self.docTransform = Transform( 'scale(%f,%f)' % (sx, sy) ).matrix
+					self.docTransform = inkex.Transform( 'scale(%f,%f)' % (sx, sy) ).matrix
 
 	def getPathVertices( self, path, node=None, transform=None, find_bbox=False ):
 
@@ -296,13 +294,13 @@ class Map( inkex.Effect ):
 			lastPoint = subpath[0]
 			lastPoint[0] = self.cx + ( lastPoint[0] - self.cx ) / math.cos( ( lastPoint[1] - self.cy ) * steps2rads )
 			if invTransform != None:
-				simpletransform.applyTransformToPoint( invTransform, lastPoint )
+				lastPoint = inkex.Transform( invTransform ).apply_to_point( lastPoint )
 			newPath += ' M %f,%f' % ( lastPoint[0], lastPoint[1] )
 			for point in subpath[1:]:
 				x = self.cx + ( point[0] - self.cx ) / math.cos( ( point[1] - self.cy ) * steps2rads )
 				pt = [x, point[1] ]
 				if invTransform != None:
-					simpletransform.applyTransformToPoint( invTransform, pt )
+					pt = inkex.Transform( invTransform ).apply_to_point( pt )
 				newPath += ' l %f,%f' % ( pt[0] - lastPoint[0], pt[1] - lastPoint[1] )
 				lastPoint = pt
 
@@ -341,7 +339,7 @@ class Map( inkex.Effect ):
 				pass
 
 			# First apply the current matrix transform to this node's tranform
-			matNew = (Transform( matCurrent ) *  Transform( node.get( "transform" ) )).matrix
+			matNew = (inkex.Transform( matCurrent ) *  inkex.Transform( node.get( "transform" ) )).matrix
 
 			if node.tag == inkex.addNS( 'g', 'svg' ) or node.tag == 'g':
 
@@ -374,7 +372,7 @@ class Map( inkex.Effect ):
 					y = float( node.get( 'y', '0' ) )
 					# Note: the transform has already been applied
 					if ( x != 0 ) or (y != 0 ):
-						matNew2 = (Transform( matNew ) * Transform( 'translate(%f,%f)' % (x,y) )).matrix
+						matNew2 = (inkex.Transform( matNew ) * inkex.Transform( 'translate(%f,%f)' % (x,y) )).matrix
 					else:
 						matNew2 = matNew
 					v = node.get( 'visibility', v )
@@ -617,11 +615,11 @@ class Map( inkex.Effect ):
 			if node_transform is None:
 				return parent_transform
 			else:
-				tr = Transform( node_transform ).matrix
+				tr = inkex.Transform( node_transform ).matrix
 				if parent_transform is None:
 					return tr
 				else:
-					return ( Transform(parent_transform) * Transform(tr) ).matrix
+					return ( inkex.Transform(parent_transform) * inkex.Transform(tr) ).matrix
 		else:
 			return self.docTransform
 
