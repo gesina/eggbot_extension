@@ -107,7 +107,6 @@ import inkex
 import simpletransform
 from inkex.transforms import Transform
 
-import cubicsuperpath
 import cspsubdiv
 import bezmisc
 import math
@@ -708,7 +707,7 @@ class Eggbot_Hatch( inkex.Effect ):
 			return
 
 		# Get a cubic super duper path
-		p = cubicsuperpath.CubicSuperPath( sp )
+		p = inkex.Path( sp ).to_superpath()
 		if ( not p ) or ( len( p ) == 0 ):
 			return
 

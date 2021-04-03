@@ -22,7 +22,6 @@ import inkex
 
 import simpletransform
 from inkex.transforms import Transform
-import cubicsuperpath
 import cspsubdiv
 import bezmisc
 
@@ -239,7 +238,7 @@ class Map( inkex.Effect ):
 			return None
 
 		# Get a cubic super path
-		p = cubicsuperpath.CubicSuperPath( sp )
+		p = inkex.Path( sp ).to_superpath()
 		if ( not p ) or ( len( p ) == 0 ):
 			# Probably never happens, but...
 			return None
