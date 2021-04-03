@@ -947,7 +947,7 @@ class EggBot( inkex.Effect ):
 		p = inkex.CubicSuperPath( inkex.Path(d) )
 
 		# ...and apply the transformation to each point
-		applyTransformToPath( matTransform, p )
+		inkex.Path( p ).transform(inkex.Transform(matTransform)).to_arrays()
 
 		# p is now a list of lists of cubic beziers [control pt1, control pt2, endpoint]
 		# where the start-point is the last point in the previous segment.

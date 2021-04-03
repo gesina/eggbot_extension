@@ -712,8 +712,8 @@ class Eggbot_Hatch( inkex.Effect ):
 			return
 
 		# Apply any transformation
-		if transform != None:
-			simpletransform.applyTransformToPath( transform, p )
+		if transform is not None:
+			inkex.Path(p).transform( inkex.Transform(transform) ).to_arrays()
 
 		# Now traverse the simplified path
 		subpaths = []
