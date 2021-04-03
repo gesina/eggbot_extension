@@ -297,7 +297,7 @@ class Map( inkex.Effect ):
 			newPath += ' M %f,%f' % ( lastPoint[0], lastPoint[1] )
 			for point in subpath[1:]:
 				x = self.cx + ( point[0] - self.cx ) / math.cos( ( point[1] - self.cy ) * steps2rads )
-				pt = [x, point[1] ]
+				pt = (x, point[1] )
 				if invTransform != None:
 					pt = inkex.Transform( invTransform ).apply_to_point( pt )
 				newPath += ' l %f,%f' % ( pt[0] - lastPoint[0], pt[1] - lastPoint[1] )
@@ -337,7 +337,7 @@ class Map( inkex.Effect ):
 			if v == 'hidden' or v == 'collapse':
 				pass
 
-			# First apply the current matrix transform to this node's tranform
+			# First apply the current matrix transform to this node's transform
 			matNew = (inkex.Transform( matCurrent ) *  inkex.Transform( node.get( "transform" ) )).matrix
 
 			if node.tag == inkex.addNS( 'g', 'svg' ) or node.tag == 'g':
@@ -512,7 +512,7 @@ class Map( inkex.Effect ):
 						'0 1 0 %f,%f ' % ( x2, cy ) + \
 						'A %f,%f ' % ( rx, ry ) + \
 						'0 1 0 %f,%f' % ( x1, cy )
-					self.mapPathVertices( d, node, matNew, find_bbox )
+					self.getPathVertices( d, node, matNew, find_bbox )
 
 			elif node.tag == inkex.addNS( 'pattern', 'svg' ) or node.tag == 'pattern':
 
@@ -663,7 +663,7 @@ class Map( inkex.Effect ):
 		# WE DO NOT compute and replace the paths in the same pass!
 		# So doing can cause multiple transformations of cloned paths
 
-		self.recursivelyReplaceSvg( self.document.getroot(), self.docTransform )
+		self.recursivelyReplaceSvg( self.document.getroot() )
 
 if __name__ == '__main__':
 
