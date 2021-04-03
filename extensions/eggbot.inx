@@ -192,7 +192,7 @@ https://github.com/evil-mad/EggBot/
     </page>
   </param>
 
-  <effect needs-live-preview="false" needs-document="false">
+  <effect needs-live-preview="false" >
     <object-type>all</object-type>
     <effects-menu>
       <submenu name="EggBot"/>
