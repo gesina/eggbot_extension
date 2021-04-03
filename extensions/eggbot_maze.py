@@ -53,7 +53,6 @@ import array
 import random
 import math
 import inkex
-import simplestyle
 
 import lxml.etree
 

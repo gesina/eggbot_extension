@@ -23,7 +23,6 @@ import gettext
 import inkex
 import math
 import random
-import simplepath
 from inkex.transforms import Transform
 import sys
 
