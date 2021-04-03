@@ -32,10 +32,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 import inkex
-import simplepath
-from inkex.paths import Path
 
-import simpletransform
 from inkex.transforms import Transform
 import cubicsuperpath
 import cspsubdiv
@@ -157,8 +154,8 @@ class Twist( inkex.Effect ):
 			# Nothing to do
 			return
 
-		# parsePath() may raise an exception.  This is okay
-		sp = simplepath.parsePath( path )
+		# Path() may raise an exception.  This is okay
+		sp = inkex.Path( path ).to_arrays()
 		if ( not sp ) or ( len( sp ) == 0 ):
 			# Path must have been devoid of any real content
 			return
@@ -306,7 +303,7 @@ class Twist( inkex.Effect ):
 				a.append( ['l', [0, h]] )
 				a.append( ['l', [-w, 0]] )
 				a.append( ['Z', []] )
-				self.addPathVertices( str(Path( a )), node, matNew, cloneTransform )
+				self.addPathVertices( str(inkex.Path( a )), node, matNew, cloneTransform )
 
 			elif node.tag == inkex.addNS( 'line', 'svg' ) or node.tag == 'line':
 
@@ -327,7 +324,7 @@ class Twist( inkex.Effect ):
 				a = []
 				a.append( ['M', [x1, y1]] )
 				a.append( ['L', [x2, y2]] )
-				self.addPathVertices( str(Path( a )), node, matNew, cloneTransform )
+				self.addPathVertices( str(inkex.Path( a )), node, matNew, cloneTransform )
 
 			elif node.tag == inkex.addNS( 'polyline', 'svg' ) or node.tag == 'polyline':
 

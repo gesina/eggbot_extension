@@ -19,8 +19,6 @@
 
 import math
 import inkex
-import simplepath
-from inkex.paths import Path
 
 import simpletransform
 from inkex.transforms import Transform
@@ -234,8 +232,8 @@ class Map( inkex.Effect ):
 			# Nothing to do
 			return None
 
-		# parsePath() may raise an exception.  This is okay
-		sp = simplepath.parsePath( path )
+		# Path() may raise an exception.  This is okay
+		sp = inkex.Path( path ).to_arrays()
 		if ( not sp ) or ( len( sp ) == 0 ):
 			# Path must have been devoid of any real content
 			return None
@@ -415,7 +413,7 @@ class Map( inkex.Effect ):
 				a.append( ['l', [0, h]] )
 				a.append( ['l', [-w, 0]] )
 				a.append( ['Z', []] )
-				self.getPathVertices( str(Path( a )), node, matNew, find_bbox )
+				self.getPathVertices( str(inkex.Path( a )), node, matNew, find_bbox )
 
 			elif node.tag == inkex.addNS( 'line', 'svg' ) or node.tag == 'line':
 
@@ -436,7 +434,7 @@ class Map( inkex.Effect ):
 				a = []
 				a.append( ['M', [x1, y1]] )
 				a.append( ['L', [x2, y2]] )
-				self.getPathVertices( str(Path( a )), node, matNew, find_bbox )
+				self.getPathVertices( str(inkex.Path( a )), node, matNew, find_bbox )
 
 			elif node.tag == inkex.addNS( 'polyline', 'svg' ) or node.tag == 'polyline':
 

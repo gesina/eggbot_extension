@@ -105,7 +105,7 @@ class EggBotReorderPaths( inkex.Effect ):
 	def get_start_end( self, node, transform ):
 		"""Given a node, return the start and end points"""
 		d = node.get( 'd' )
-		sp = simplepath.parsePath( d )
+		sp = inkex.Path( d ).to_arrays()
 
 		# simplepath converts coordinates to absolute and cleans them up, but
 		# these are still some big assumptions here, are they always valid? TODO
