@@ -213,7 +213,7 @@ def processMarkup( text, family='sans' ):
 	# By default we assume 'sans'
 	if ( family is None ) or ( family == ''):
 		family = 'sans'
-	family_default = family
+	default_family = family
 	face_stack = [ family ]
 
 	# Bold and italics off
