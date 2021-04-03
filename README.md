@@ -7,16 +7,18 @@ from inside Inkscape.
 You have to put these two directories inside your ```~/.config/inkscape``` folder.
 
 ```bash
-curl -L https://github.com/justinotherguy/eggbot_extension/archive/1.2.tar.gz | tar -xz
+git clone https://github.com/justinotherguy/eggbot_extension.git
+# If you want a specific branch:
+#cd eggbot_extension && git checkout BRANCH && cd ..
 mkdir -p ~/.config/inkscape
-cp -r eggbot_extension-1.2/templates ~/.config/inkscape
-cp -r eggbot_extension-1.2/extensions ~/.config/inkscape
+cp -r eggbot_extension/templates ~/.config/inkscape
+cp -r eggbot_extension/extensions ~/.config/inkscape
 ```
 
 ### Dependencies
 
-- Inkscape (obviously)
-- python
+- Inkscape >= 1.0 (obviously)
+- python3
 - python-serial
 
 On Debian or Debian-based distributions (Ubuntu, Mint) use apt-get/aptitude/apt, for example
@@ -25,11 +27,16 @@ sudo apt-get install inkscape python python-serial
 ```
 ### Access Rights
 
-On most GNU/Linux distributions you have to be member of the group `dialout` to use serial ports.
+On most GNU/Linux distributions you have to be member of a certain group to use serial ports.
 
-On Debian/Ubuntu/Mint you can add yourself to the `dialout` group with
+On Debian/Ubuntu/Mint this is the `dialout` group to which you can add yourself with
 ```
 sudo addgroup $USER dialout
+```
+
+On Archlinux it is the `uucp` group to which you can add yourself with
+```
+sudo usermod -aG uucp $USER
 ```
 
 You need to logout/logon or reboot to activate the change.
