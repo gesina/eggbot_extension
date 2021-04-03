@@ -321,6 +321,7 @@ def interstices( self, P1, P2, paths, hatches, bHoldBackHatches, fHoldBackSteps 
 							angleDifferenceRadians += 2 * math.pi
 						fSinOfJoinAngle = math.sin( angleDifferenceRadians )
 						fAbsSinOfJoinAngle = abs( fSinOfJoinAngle )
+						fPreliminaryLengthToBeRemovedFromPt = 0
 						if (fAbsSinOfJoinAngle != 0.0):								# Worrying about case of intersecting a segment parallel to the hatch
 							fPreliminaryLengthToBeRemovedFromPt = fHoldBackSteps / fAbsSinOfJoinAngle
 							bUnconditionallyExciseHatch = False
@@ -479,9 +480,8 @@ def interstices( self, P1, P2, paths, hatches, bHoldBackHatches, fHoldBackSteps 
 			fLengthToBeRemovedFromPt1 = dAndA[i][3]
 			fLengthToBeRemovedFromPt2 = dAndA[i+1][2]
 			
-			if ( ( fInitialHatchLength - ( fLengthToBeRemovedFromPt1 + fLengthToBeRemovedFromPt2 ) )		\
-					<=																						\
-					fMinAllowedHatchLength ):
+			if ( ( fInitialHatchLength - ( fLengthToBeRemovedFromPt1 + fLengthToBeRemovedFromPt2 ) )
+					<= fMinAllowedHatchLength ):
 				pass								# Just don't insert it into the hatch list
 			else:	# if (...too short...):
 				'''
@@ -662,7 +662,7 @@ class Eggbot_Hatch( inkex.Effect ):
 		self.docHeight = plot_utils.getLength( self, 'height', N_PAGE_HEIGHT )
 		self.docWidth = plot_utils.getLength( self, 'width', N_PAGE_WIDTH )
 		
-		if ( self.docHeight == None ) or ( self.docWidth == None ):
+		if (self.docHeight is None) or (self.docWidth is None):
 			return False
 		else:
 			return True
@@ -894,12 +894,11 @@ class Eggbot_Hatch( inkex.Effect ):
 					pass
 				w = float( node.get( 'width', '0' ) )
 				h = float( node.get( 'height', '0' ) )
-				a = []
-				a.append( ['M', [x, y]] )
-				a.append( ['l', [w, 0]] )
-				a.append( ['l', [0, h]] )
-				a.append( ['l', [-w, 0]] )
-				a.append( ['Z', []] )
+				a = [['M', [x, y]],
+					 ['l', [w, 0]],
+					 ['l', [0, h]],
+					 ['l', [-w, 0]],
+					 ['Z', []]]
 				self.addPathVertices( str(inkex.Path( a )), node, matNew )
 				# We now have a path we want to apply a (cross)hatch to
 				# Apply appropriate functions
@@ -933,9 +932,8 @@ class Eggbot_Hatch( inkex.Effect ):
 				y2 = float( node.get( 'y2' ) )
 				if ( not x1 ) or ( not y1 ) or ( not x2 ) or ( not y2 ):
 					pass
-				a = []
-				a.append( ['M', [x1, y1]] )
-				a.append( ['L', [x2, y2]] )
+				a = [['M', [x1, y1]],
+					 ['L', [x2, y2]]]
 				self.addPathVertices( str(inkex.Path( a )), node, matNew )
 				# We now have a path we want to apply a (cross)hatch to
 				# Apply appropriate functions
@@ -980,7 +978,7 @@ class Eggbot_Hatch( inkex.Effect ):
 						# if self.options.crossHatch:
                          			# Now loop over our hatch lines looking for intersections
 					for h in self.grid:
-		                               	interstices( self, (h[0], h[1]), (h[2], h[3]), self.paths, self.hatches, self.options.holdBackHatchFromEdges, self.options.holdBackSteps )
+						interstices( self, (h[0], h[1]), (h[2], h[3]), self.paths, self.hatches, self.options.holdBackHatchFromEdges, self.options.holdBackSteps )
 				# if bHaveGrid
 				else:	
 					inkex.errormsg( ' Nothing to plot' )
@@ -1013,7 +1011,7 @@ class Eggbot_Hatch( inkex.Effect ):
 						# if self.options.crossHatch:
                          			# Now loop over our hatch lines looking for intersections
 					for h in self.grid:
-		                               	interstices( self, (h[0], h[1]), (h[2], h[3]), self.paths, self.hatches, self.options.holdBackHatchFromEdges, self.options.holdBackSteps )
+						interstices( self, (h[0], h[1]), (h[2], h[3]), self.paths, self.hatches, self.options.holdBackHatchFromEdges, self.options.holdBackSteps )
 				else:	
 					inkex.errormsg( ' Nothing to plot' )
 
@@ -1066,7 +1064,7 @@ class Eggbot_Hatch( inkex.Effect ):
 						# if self.options.crossHatch:
                          			# Now loop over our hatch lines looking for intersections
 						for h in self.grid:
-		                               		interstices( self, (h[0], h[1]), (h[2], h[3]), self.paths, self.hatches, self.options.holdBackHatchFromEdges, self.options.holdBackSteps )
+							interstices( self, (h[0], h[1]), (h[2], h[3]), self.paths, self.hatches, self.options.holdBackHatchFromEdges, self.options.holdBackSteps )
 					else:	
 						inkex.errormsg( ' Nothing to plot' )
 
@@ -1119,7 +1117,7 @@ class Eggbot_Hatch( inkex.Effect ):
 		
 		try:
 			style = node.get('style')
-			if style != None:
+			if style is not None:
 				declarations = style.split(';')
 				for i,declaration in enumerate(declarations):
 					parts = declaration.split(':', 2)
@@ -1137,7 +1135,7 @@ class Eggbot_Hatch( inkex.Effect ):
 			style = { 'stroke': '%s' % stroke_color, 'fill': 'none', 'stroke-width': '%s' % stroke_width }
 			line_attribs = { 'style':str(inkex.Style( style )), 'd': path }
 			tran = node.get( 'transform' )
-			if ( tran != None ) and ( tran != '' ):
+			if (tran is not None) and (tran != ''):
 				line_attribs['transform'] = tran
 			lxml.etree.SubElement( g, inkex.addNS( 'path', 'svg' ), line_attribs )
 
@@ -1316,7 +1314,7 @@ class Eggbot_Hatch( inkex.Effect ):
 					# set in the path element seems a bit counterintuitive
 					# after the fact (i.e., what's this tranform here for?).
 					# So, we compute the inverse transform and apply it here.
-					if transform != None:
+					if transform is not None:
 						pt1 = inkex.Transform( transform ).apply_to_point( pt1 )
 						pt2 = inkex.Transform( transform ).apply_to_point( pt2 )
 					# Now generate the path data for the <path>
@@ -1357,7 +1355,7 @@ class Eggbot_Hatch( inkex.Effect ):
 					# set in the path element seems a bit counterintuitive
 					# after the fact (i.e., what's this tranform here for?).
 					# So, we compute the inverse transform and apply it here.
-					if transform != None:
+					if transform is not None:
 						pt1 = inkex.Transform( transform ).apply_to_point( pt1 )
 						pt2 = inkex.Transform( transform ).apply_to_point( pt2 )
 
@@ -1495,10 +1493,10 @@ class Eggbot_Hatch( inkex.Effect ):
 							# The solution is to hold in abeyance the actual plotting of the line,
 							# holding it available for shrinking if a curve is to be added.
 							# That is 
-							relativePositionOfLastPlottedLineWasHeldInAbeyance = {}
-							relativePositionOfLastPlottedLineWasHeldInAbeyance[0] = deltaX			# delta is from initial point
-							relativePositionOfLastPlottedLineWasHeldInAbeyance[1] = deltaY			# Will be printed after we know if it must be modified
-																									# to keep the ending join within bounds
+							relativePositionOfLastPlottedLineWasHeldInAbeyance = {
+								0: deltaX,  # delta is from initial point
+								1: deltaY   # Will be printed after we know if it must be modified to keep the ending join within bounds
+							}
 							ptLastPositionAbsolute[0] += deltaX
 							ptLastPositionAbsolute[1] += deltaY
 																		

@@ -195,7 +195,7 @@ class Map( inkex.Effect ):
 
 		self.docHeight = self.getLength( 'height', N_PAGE_HEIGHT )
 		self.docWidth = self.getLength( 'width', N_PAGE_WIDTH )
-		if ( self.docHeight == None ) or ( self.docWidth == None ):
+		if (self.docHeight is None) or (self.docWidth is None):
 			return False
 		else:
 			return True
@@ -253,7 +253,7 @@ class Map( inkex.Effect ):
 			last_csp = None
 			subdivideCubicPath( sp, float( self.options.smoothness ) )
 			for csp in sp:
-				if ( last_csp != None ) and ( math.fabs( csp[1][1] - last_csp[1] ) > self.options.maxDy ):
+				if (last_csp is not None) and (math.fabs(csp[1][1] - last_csp[1]) > self.options.maxDy):
 					dy = ( csp[1][1] - last_csp[1] )
 					dx = ( csp[1][0] - last_csp[0] )
 					nsteps = math.ceil( math.fabs( dy / self.options.maxDy ) )
@@ -292,13 +292,13 @@ class Map( inkex.Effect ):
 		for subpath in self.paths[node]:
 			lastPoint = subpath[0]
 			lastPoint[0] = self.cx + ( lastPoint[0] - self.cx ) / math.cos( ( lastPoint[1] - self.cy ) * steps2rads )
-			if invTransform != None:
+			if invTransform is not None:
 				lastPoint = inkex.Transform( invTransform ).apply_to_point( lastPoint )
 			newPath += ' M %f,%f' % ( lastPoint[0], lastPoint[1] )
 			for point in subpath[1:]:
 				x = self.cx + ( point[0] - self.cx ) / math.cos( ( point[1] - self.cy ) * steps2rads )
 				pt = (x, point[1] )
-				if invTransform != None:
+				if invTransform is not None:
 					pt = inkex.Transform( invTransform ).apply_to_point( pt )
 				newPath += ' l %f,%f' % ( pt[0] - lastPoint[0], pt[1] - lastPoint[1] )
 				lastPoint = pt
@@ -403,12 +403,11 @@ class Map( inkex.Effect ):
 					pass
 				w = float( node.get( 'width', '0' ) )
 				h = float( node.get( 'height', '0' ) )
-				a = []
-				a.append( ['M', [x, y]] )
-				a.append( ['l', [w, 0]] )
-				a.append( ['l', [0, h]] )
-				a.append( ['l', [-w, 0]] )
-				a.append( ['Z', []] )
+				a = [['M', [x, y]],
+					 ['l', [w, 0]],
+					 ['l', [0, h]],
+					 ['l', [-w, 0]],
+					 ['Z', []]]
 				self.getPathVertices( str(inkex.Path( a )), node, matNew, find_bbox )
 
 			elif node.tag == inkex.addNS( 'line', 'svg' ) or node.tag == 'line':
@@ -427,9 +426,8 @@ class Map( inkex.Effect ):
 				y2 = float( node.get( 'y2' ) )
 				if ( not x1 ) or ( not y1 ) or ( not x2 ) or ( not y2 ):
 					pass
-				a = []
-				a.append( ['M', [x1, y1]] )
-				a.append( ['L', [x2, y2]] )
+				a = [['M', [x1, y1]],
+					 ['L', [x2, y2]]]
 				self.getPathVertices( str(inkex.Path( a )), node, matNew, find_bbox )
 
 			elif node.tag == inkex.addNS( 'polyline', 'svg' ) or node.tag == 'polyline':

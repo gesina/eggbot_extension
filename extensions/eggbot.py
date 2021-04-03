@@ -158,9 +158,6 @@ class EggBot( inkex.Effect ):
 		self.svgTotalDeltaX = int( 0 )
 		self.svgTotalDeltaY = int( 0 )
 		self.serialPort = None
-		
-		nDeltaX = 0
-		nDeltaY = 0
 
 		self.svgWidth = float( eggbot_conf.N_PAGE_WIDTH )
 		self.svgHeight = float( eggbot_conf.N_PAGE_HEIGHT )
@@ -196,12 +193,12 @@ class EggBot( inkex.Effect ):
 				self.plotCurrentLayer = True
 				self.svgNodeCount = 0
 				self.svgLastPath = 0
-				unused_button = ebb_motion.QueryPRGButton(self.serialPort)	#Query if button pressed
-				self.svgLayer = 12345;  # indicate that we are plotting all layers.
+				_unused_button = ebb_motion.QueryPRGButton(self.serialPort)	#Query if button pressed
+				self.svgLayer = 12345  # indicate that we are plotting all layers.
 				self.plotToEggBot()
 	
 			elif self.options.tab == 'resume':
-				unused_button = ebb_motion.QueryPRGButton(self.serialPort)	#Query if button pressed
+				_unused_button = ebb_motion.QueryPRGButton(self.serialPort)	#Query if button pressed
 				self.resumePlotSetup()
 				if self.resumeMode:
 					self.plotToEggBot()
@@ -215,8 +212,8 @@ class EggBot( inkex.Effect ):
 				self.plotCurrentLayer = False
 				self.LayersPlotted = 0
 				self.svgLastPath = 0
-				unused_button = ebb_motion.QueryPRGButton(self.serialPort)	#Query if button pressed
-				self.svgNodeCount = 0;
+				_unused_button = ebb_motion.QueryPRGButton(self.serialPort)	#Query if button pressed
+				self.svgNodeCount = 0
 				self.svgLayer = self.options.layernumber
 				self.plotToEggBot()
 				if ( self.LayersPlotted == 0 ):
@@ -603,12 +600,11 @@ class EggBot( inkex.Effect ):
 						t = node.get( 'transform' )
 						if t:
 							newpath.set( 'transform', t )
-						a = []
-						a.append( ['M', [x, y]] )
-						a.append( ['l', [w, 0]] )
-						a.append( ['l', [0, h]] )
-						a.append( ['l', [-w, 0]] )
-						a.append( ['Z', []] )
+						a = [['M', [x, y]],
+							 ['l', [w, 0]],
+							 ['l', [0, h]],
+							 ['l', [-w, 0]],
+							 ['Z', []]]
 						newpath.set( 'd', str(inkex.Path( a )) )
 						self.plotPath( newpath, matNew )
 						if ( not self.bStopped ):	#an "index" for resuming plots quickly-- record last complete path
@@ -647,9 +643,8 @@ class EggBot( inkex.Effect ):
 						t = node.get( 'transform' )
 						if t:
 							newpath.set( 'transform', t )
-						a = []
-						a.append( ['M', [x1, y1]] )
-						a.append( ['L', [x2, y2]] )
+						a = [['M', [x1, y1]],
+							 ['L', [x2, y2]]]
 						newpath.set( 'd', str(inkex.Path( a )) )
 						self.plotPath( newpath, matNew )
 						if ( not self.bStopped ):	#an "index" for resuming plots quickly-- record last complete path
@@ -694,7 +689,7 @@ class EggBot( inkex.Effect ):
 						for i in range( 1, len( pa ) ):
 							d += "L" + pa[i]
 						newpath = lxml.etree.Element( inkex.addNS( 'path', 'svg' ) )
-						newpath.set( 'd', d );
+						newpath.set( 'd', d )
 						s = node.get( 'style' )
 						if s:
 							newpath.set( 'style', s )
@@ -741,7 +736,7 @@ class EggBot( inkex.Effect ):
 							d += "L" + pa[i]
 						d += "Z"
 						newpath = lxml.etree.Element( inkex.addNS( 'path', 'svg' ) )
-						newpath.set( 'd', d );
+						newpath.set( 'd', d )
 						s = node.get( 'style' )
 						if s:
 							newpath.set( 'style', s )
@@ -805,7 +800,7 @@ class EggBot( inkex.Effect ):
 								'A %f,%f ' % ( rx, ry ) + \
 								'0 1 0 %f,%f' % ( x1, cy )
 							newpath = lxml.etree.Element( inkex.addNS( 'path', 'svg' ) )
-							newpath.set( 'd', d );
+							newpath.set( 'd', d )
 							s = node.get( 'style' )
 							if s:
 								newpath.set( 'style', s )
@@ -926,7 +921,7 @@ class EggBot( inkex.Effect ):
 		'''
 		self.svgHeight = plot_utils.getLength( self, 'height', eggbot_conf.N_PAGE_HEIGHT )
 		self.svgWidth = plot_utils.getLength( self, 'width', eggbot_conf.N_PAGE_WIDTH )
-		if ( self.svgHeight == None ) or ( self.svgWidth == None ):
+		if (self.svgHeight is None) or (self.svgWidth is None):
 			return False
 		else:
 			return True
@@ -1157,7 +1152,7 @@ class EggBot( inkex.Effect ):
 				bNoResponseFromEbb = False
 				
 			if strButton[0] == '1': #button pressed, or simulated pressed because of communication error to allow resume
-				self.svgNodeCount = self.nodeCount;
+				self.svgNodeCount = self.nodeCount
 				if bNoResponseFromEbb:
 					inkex.errormsg( 'Plot halted by communication error after node number ' + str( self.nodeCount ) + '.' )
 				else:

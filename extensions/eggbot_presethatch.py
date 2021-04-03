@@ -23,7 +23,7 @@ class PresetHatch(inkex.Effect):
 		inkex.Effect.__init__(self)
 		self.arg_parser.add_argument("--title")
 	def effect(self):
-		self.svgDefRead = False;
+		self.svgDefRead = False
 		self.svg = self.document.getroot()
 		self.recursiveDefDataScan(self.svg)
 

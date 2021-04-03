@@ -44,7 +44,7 @@ def findPort():
 	try:
 		from serial.tools.list_ports import comports
 	except ImportError:
-		comports = None		
+		comports = None  # TODO: global?
 		return None
 	if comports:
 		comPortsList = list(comports())
@@ -193,4 +193,4 @@ def bootload( comPort ):
 			pass 
 
 def queryVersion ( comPort ):
-	return query( comPort, 'V\r' ); 	#Query EBB Version String
+	return query( comPort, 'V\r' ) 	#Query EBB Version String

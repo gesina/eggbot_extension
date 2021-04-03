@@ -109,7 +109,7 @@ class Hershey( inkex.Effect ):
             scale *= 0.5	#Typically scales to about A4/US Letter size
         else:
             #Generate glyph table
-            wmax = 0;
+            wmax = 0
             for p in range(0,10):
                 w = 0
                 v = spacing * (15*p - 67 )
@@ -141,7 +141,6 @@ class Hershey( inkex.Effect ):
         fontgroup = eval( 'hersheydata.' + fontgroupname )
         
         # Render list of font names in a vertical column:
-        nFontIndex = 0
         for f in fontgroup:
             w = 0
             letterVals = [ord(q) - 32 for q in (f[1] + ' -> ')]

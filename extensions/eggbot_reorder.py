@@ -63,6 +63,7 @@ def find_ordering_naive( objlist ):
 	# for the previous end point, iterate over each remaining path and pick the closest starting point
 	while len( objlist ) > 0:
 		min_distance = 100000000 # TODO put something else here better?
+		min_path = None
 		for path in objlist:
 			# instead of having a prevX, prevY, we just look at the last item in sort_list
 			this_distance = dist( sort_list[-1][1][2], sort_list[-1][1][3], path[1][0], path[1][1] )
@@ -127,7 +128,7 @@ class EggBotReorderPaths( inkex.Effect ):
 
 		# based partially on the restack.py extension
 		if len( self.svg.selected ) > 0:
-			svg = self.document.getroot()
+			svg = self.document.getroot()  # TODO: Can be removed?
 
 			# TODO check for non-path elements?
 			# TODO it seems like the order of selection is not consistent

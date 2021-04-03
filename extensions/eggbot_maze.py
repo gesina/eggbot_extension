@@ -606,6 +606,7 @@ class Maze( inkex.Effect ):
 			dy = 1
 
 		tracing = False
+		segment = None
 		for x in range( 0, self.w ):
 
 			if self.is_wall( x, y, wall ):
@@ -649,7 +650,7 @@ class Maze( inkex.Effect ):
 
 		tracing = False
 		for y in range( y_start, y_finis, dy ):
-			assert 0 <= y and y < self.h, "y (%d) is out of range" % y
+			assert 0 <= y < self.h, "y (%d) is out of range" % y
 			if self.is_wall( x, y, wall ):
 				if not tracing:
 					# Starting a new segment

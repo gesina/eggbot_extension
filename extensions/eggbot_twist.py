@@ -295,12 +295,11 @@ class Twist( inkex.Effect ):
 					pass
 				w = float( node.get( 'width', '0' ) )
 				h = float( node.get( 'height', '0' ) )
-				a = []
-				a.append( ['M', [x, y]] )
-				a.append( ['l', [w, 0]] )
-				a.append( ['l', [0, h]] )
-				a.append( ['l', [-w, 0]] )
-				a.append( ['Z', []] )
+				a = [['M', [x, y]],
+					 ['l', [w, 0]],
+					 ['l', [0, h]],
+					 ['l', [-w, 0]],
+					 ['Z', []]]
 				self.addPathVertices( str(inkex.Path( a )), node, matNew, cloneTransform )
 
 			elif node.tag == inkex.addNS( 'line', 'svg' ) or node.tag == 'line':
@@ -319,9 +318,8 @@ class Twist( inkex.Effect ):
 				y2 = float( node.get( 'y2' ) )
 				if ( not x1 ) or ( not y1 ) or ( not x2 ) or ( not y2 ):
 					pass
-				a = []
-				a.append( ['M', [x1, y1]] )
-				a.append( ['L', [x2, y2]] )
+				a = [['M', [x1, y1]],
+					 ['L', [x2, y2]]]
 				self.addPathVertices( str(inkex.Path( a )), node, matNew, cloneTransform )
 
 			elif node.tag == inkex.addNS( 'polyline', 'svg' ) or node.tag == 'polyline':
@@ -478,7 +476,7 @@ class Twist( inkex.Effect ):
 		# of the new <g> element
 		style = { 'stroke': '#000000', 'fill': 'none', 'stroke-width': '1' }
 		line_attribs = { 'style':str(inkex.Style( style )), 'd': path }
-		if ( cloneTransform != None ) and ( cloneTransform != '' ):
+		if (cloneTransform is not None) and (cloneTransform != ''):
 			line_attribs['transform'] = cloneTransform
 		lxml.etree.SubElement( g, inkex.addNS( 'path', 'svg' ), line_attribs )
 

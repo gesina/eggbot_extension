@@ -53,7 +53,7 @@ def formatDesc( d ):
 
 	return ';'.join( [ atr + ':' + str( val ) for atr,val in d.iteritems() ] )
 
-def drawSine( cycles=8, rn=0, rm=0, nPoints=50, offset=[0, 0],
+def drawSine( cycles=8, rn=0, rm=0, nPoints=50, offset=(0, 0),
 	height=200, width=3200, rescale=0.98, bound1='', bound2='', fun='sine', spline=True ):
 
 	'''
@@ -145,7 +145,6 @@ def drawSine( cycles=8, rn=0, rm=0, nPoints=50, offset=[0, 0],
 	yOffset = float( offset[1] )
 
 	# Each cycle is 2pi
-	n, m = int( 0 ), int( 0 )
 	r = 2 * pi * float( cycles )
 	if ( int( rm ) == 0 ) or ( int( rn ) == 0 ):
 		xMin = float( 0 )
@@ -201,8 +200,7 @@ def drawSine( cycles=8, rn=0, rm=0, nPoints=50, offset=[0, 0],
 	dy1 = dYdXs( float( 0 ) )
 
 	# Starting point in the path is ( x, sin(x) )
-	pathData = []
-	pathData.append(['M', [ x1 , y1 ] ] )
+	pathData = [['M', [x1, y1]]]
 
 	for i in range( 1, nPoints ):
 
