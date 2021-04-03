@@ -35,7 +35,6 @@ import inkex
 
 from inkex.transforms import Transform
 import inkex.bezier
-import bezmisc
 
 import lxml.etree
 
@@ -70,7 +69,7 @@ def subdivideCubicPath( sp, flat, i=1 ):
 
 			i += 1
 
-		one, two = bezmisc.beziersplitatt( b, 0.5 )
+		one, two = inkex.bezier.beziersplitatt( b, 0.5 )
 		sp[i - 1][2] = one[1]
 		sp[i][0] = two[2]
 		p = [one[2], one[3], two[1]]
