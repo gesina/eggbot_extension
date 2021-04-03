@@ -31,7 +31,7 @@
 # SOFTWARE.
 
 from math import sqrt
-import cspsubdiv
+import inkex.bezier
 from bezmisc import *
 
 def version():
@@ -229,7 +229,7 @@ def subdivideCubicPath( sp, flat, i=1 ):
 	is approximately a straight line within a given tolerance
 	(the "smoothness" defined by [flat]).
 
-	This is a modified version of cspsubdiv.cspsubdiv(). I rewrote the recursive
+	This is a modified version of inkex.bezier.cspsubdiv(). I rewrote the recursive
 	call because it caused recursion-depth errors on complicated line segments.
 	"""
 
@@ -244,7 +244,7 @@ def subdivideCubicPath( sp, flat, i=1 ):
 
 			b = ( p0, p1, p2, p3 )
 
-			if cspsubdiv.maxdist( b ) > flat:
+			if inkex.bezier.maxdist( b ) > flat:
 				break
 			i += 1
 

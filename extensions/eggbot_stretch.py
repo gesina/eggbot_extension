@@ -22,7 +22,7 @@ import inkex
 
 import simpletransform
 from inkex.transforms import Transform
-import cspsubdiv
+import inkex.bezier
 import bezmisc
 
 import lxml.etree
@@ -106,9 +106,9 @@ def subdivideCubicPath( sp, flat, i=1 ):
 	is approximately a straight line within a given tolerance
 	(the "smoothness" defined by [flat]).
 
-	This is a modified version of cspsubdiv.cspsubdiv(): rewritten
+	This is a modified version of inkex.bezier.cspsubdiv(): rewritten
 	because recursion-depth errors on complicated line segments
-	could occur with cspsubdiv.cspsubdiv().
+	could occur with inkex.bezier.cspsubdiv().
 	'''
 
 	while True:
@@ -123,7 +123,7 @@ def subdivideCubicPath( sp, flat, i=1 ):
 
 			b = ( p0, p1, p2, p3 )
 
-			if cspsubdiv.maxdist( b ) > flat:
+			if inkex.bezier.maxdist( b ) > flat:
 				break
 
 			i += 1
