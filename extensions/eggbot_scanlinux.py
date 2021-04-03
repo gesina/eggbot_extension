@@ -30,10 +30,10 @@ def findPorts():
 		yield os.path.join( DEV_TREE , device )
 
 if __name__ == '__main__':
-	print "Looking for EiBotBoards"
+	print("Looking for EiBotBoards")
 	for port in findEiBotBoards():
-		print "  ", port
+		print("  ", port)
 
-	print "Looking for COM ports"
+	print("Looking for COM ports")
 	for port in findPorts():
-		print "  ", port
+		print("  ", port)
