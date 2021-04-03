@@ -74,7 +74,6 @@ import hersheydata			#data file w/ Hershey font data
 import inkex
 
 import math
-import string
 
 import lxml.etree
 
@@ -161,7 +160,7 @@ entity_refs = { '&lt;' : '<', '&gt;' : '>', '&amp;' : '&', '&quot;' : '"', '&apo
 
 def normalize_possible_EMS_string( tag ):
 	# Normalizes tag name by removing any spaces
-	sNormalizedTag = string.replace( tag, ' ', '')
+	sNormalizedTag = tag.replace(' ', '')
 	return sNormalizedTag
 
 def is_valid_EMS_name( tag ):

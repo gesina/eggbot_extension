@@ -24,7 +24,6 @@ from inkex.transforms import Transform
 
 import gettext
 import inkex
-import string
 import time
 import math
 import ebb_serial		# https://github.com/evil-mad/plotink
@@ -897,7 +896,7 @@ class EggBot( inkex.Effect ):
 
 		TempNumString = 'x'
 		stringPos = 1
-		CurrentLayerName = string.lstrip( strLayerName.encode( 'ascii', 'ignore' ) ) #remove leading whitespace
+		CurrentLayerName = str(strLayerName.encode( 'ascii', 'ignore' )).lstrip() #remove leading whitespace
 		
 		# Look at layer name.  Sample first character, then first two, and
 		# so on, until the string ends or the string no longer consists of
