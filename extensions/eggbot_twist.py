@@ -165,7 +165,7 @@ class Twist( inkex.Effect ):
 			return
 
 		#if transform:
-		#	inkex.Path(p).transform(inkex.Transform(transform)).to_arrays()
+		#	p = inkex.Path(p).transform(inkex.Transform(transform)).to_arrays()
 
 		# Now traverse the cubic super path
 		subpath_list = []
