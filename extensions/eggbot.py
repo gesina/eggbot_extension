@@ -891,7 +891,7 @@ class EggBot( inkex.Effect ):
 
 		TempNumString = 'x'
 		stringPos = 1
-		CurrentLayerName = str(strLayerName.encode( 'ascii', 'ignore' )).lstrip() #remove leading whitespace
+		CurrentLayerName = str(strLayerName).lstrip() #remove leading whitespace
 		
 		# Look at layer name.  Sample first character, then first two, and
 		# so on, until the string ends or the string no longer consists of
