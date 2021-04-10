@@ -38,42 +38,6 @@ import inkex.bezier
 
 import lxml.etree
 
-def subdivideCubicPath( sp, flat, i=1 ):
-
-	'''
-	[ Lifted from eggbot.py with impunity ]
-
-	Break up a bezier curve into smaller curves, each of which
-	is approximately a straight line within a given tolerance
-	(the "smoothness" defined by [flat]).
-
-	This is a modified version of inkex.bezier.cspsubdiv(): rewritten
-	because recursion-depth errors on complicated line segments
-	could occur with inkex.bezier.cspsubdiv().
-	'''
-
-	while True:
-		while True:
-			if i >= len( sp ):
-				return
-
-			p0 = sp[i - 1][1]
-			p1 = sp[i - 1][2]
-			p2 = sp[i][0]
-			p3 = sp[i][1]
-
-			b = ( p0, p1, p2, p3 )
-
-			if inkex.bezier.maxdist( b ) > flat:
-				break
-
-			i += 1
-
-		one, two = inkex.bezier.beziersplitatt( b, 0.5 )
-		sp[i - 1][2] = one[1]
-		sp[i][0] = two[2]
-		p = [one[2], one[3], two[1]]
-		sp[i:1] = [p]
 
 def distanceSquared( P1, P2 ):
 
