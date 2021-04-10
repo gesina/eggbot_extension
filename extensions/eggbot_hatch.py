@@ -711,7 +711,9 @@ class Eggbot_Hatch( inkex.Effect ):
 
 		# Apply any transformation
 		if transform is not None:
-			p = inkex.Path(p).transform( inkex.Transform(transform) ).to_arrays()
+			p = p.transform( inkex.Transform(transform) )
+		# Subdivide into smaller path segments with given smoothness
+		inkex.bezier.cspsubdiv(p, float( self.options.tolerance / 100 ))
 
 		# Now traverse the simplified path
 		subpaths = []
@@ -724,7 +726,6 @@ class Eggbot_Hatch( inkex.Effect ):
 					# Keep the prior subpath: it appears to be a closed path
 					subpaths.append( subpath_vertices )
 			subpath_vertices = []
-			subdivideCubicPath( sp, float( self.options.tolerance / 100 ) )
 			for csp in sp:
 				# Add this vertex to the list of vertices
 				subpath_vertices.append( csp[1] )

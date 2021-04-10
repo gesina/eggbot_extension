@@ -21,6 +21,7 @@
 # TODO: Add and honor advisory locking around device open/close for non Win32
 
 from inkex.transforms import Transform
+import inkex.bezier
 
 import gettext
 import inkex
@@ -941,13 +942,16 @@ class EggBot( inkex.Effect ):
 		p = inkex.CubicSuperPath( inkex.Path(d) )
 
 		# ...and apply the transformation to each point
-		p = inkex.Path( p ).transform(inkex.Transform(matTransform)).to_arrays()
+		p = p.transform(inkex.Transform(matTransform))
+		# ...and sub-divide the super path into smaller curves, each of which
+		# 	is approximately a straight line within a given tolerance
+		# 	(the "smoothness")
+		inkex.bezier.cspsubdiv(p, self.options.smoothness)
 
 		# p is now a list of lists of cubic beziers [control pt1, control pt2, endpoint]
 		# where the start-point is the last point in the previous segment.
 		for sp in p:
 
-			plot_utils.subdivideCubicPath( sp, self.options.smoothness )
 			nIndex = 0
 
 			for csp in sp:

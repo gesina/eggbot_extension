@@ -241,7 +241,9 @@ class Map( inkex.Effect ):
 			return None
 
 		if transform:
-			p = inkex.Path( p ).transform( inkex.Transform(transform) ).to_arrays()
+			p = p.transform( inkex.Transform(transform) )
+		# Subdivide into smaller path segments with given smoothness
+		inkex.bezier.cspsubdiv(p, float( self.options.smoothness ))
 
 		# Now traverse the cubic super path
 		subpath_list = []
@@ -251,7 +253,6 @@ class Map( inkex.Effect ):
 				subpath_list.append( subpath_vertices )
 			subpath_vertices = []
 			last_csp = None
-			subdivideCubicPath( sp, float( self.options.smoothness ) )
 			for csp in sp:
 				if (last_csp is not None) and (math.fabs(csp[1][1] - last_csp[1]) > self.options.maxDy):
 					dy = ( csp[1][1] - last_csp[1] )

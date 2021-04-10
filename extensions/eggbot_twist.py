@@ -165,7 +165,9 @@ class Twist( inkex.Effect ):
 			return
 
 		#if transform:
-		#	p = inkex.Path(p).transform(inkex.Transform(transform)).to_arrays()
+		#	p = p.transform(inkex.Transform(transform))
+		# Subdivide into smaller path segments with given smoothness
+		inkex.bezier.cspsubdiv(p, float( 0.2 ))
 
 		# Now traverse the cubic super path
 		subpath_list = []
@@ -177,7 +179,6 @@ class Twist( inkex.Effect ):
 					# Keep the prior subpath: it appears to be a closed path
 					subpath_list.append( subpath_vertices )
 			subpath_vertices = []
-			subdivideCubicPath( sp, float( 0.2 ) )
 			for csp in sp:
 				# Add this vertex to the list of vetices
 				subpath_vertices.append( csp[1] )
