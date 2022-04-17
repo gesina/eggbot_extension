@@ -31,7 +31,7 @@
 
 import ebb_serial
 import math
-from distutils.version import LooseVersion
+from packaging.version import parse as parse_version
 
 def version():	# Report version number for this document
 	return "0.14"	# Dated February 21, 2018
@@ -289,7 +289,7 @@ def queryVoltage( portName ):
 		EBBversionString = EBBversionString.split("Version ",1)[1]   # Stripped copy, for version # comparisons
 		EBBversionString = EBBversionString.strip()
 		if (EBBversionString != "none"):
-			if (LooseVersion(EBBversionString) >= LooseVersion("2.2.3")):
+			if (parse_version(EBBversionString) >= parse_version("2.2.3")):
 				rawString = (ebb_serial.query( portName, 'QC\r' ))
 				voltagevalue = int(rawString.split(",",1)[1]) # Pick second value only
 				# Typical reading is about 300, for 9 V input.
