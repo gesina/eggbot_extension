@@ -4,15 +4,20 @@ This Inkscape extension helps you to use the EggDuino based EggBot
 from inside Inkscape.
 
 ## Installation Linux and OSX
-You have to put these two directories inside your ```~/.config/inkscape``` folder.
+You have to put the content of the directories `extensions` and
+`templates` inside the respective folders inside your user extensions folder
+(the ones listed at `Edit` > `Preferences` under `System: User extensions`
+and `System: User templates`, by default
+`~/.config/inkscape/extensions` and `~/.config/inkscape/templates`).
 
 ```bash
 git clone https://github.com/justinotherguy/eggbot_extension.git
 # If you want a specific branch:
 #cd eggbot_extension && git checkout BRANCH && cd ..
-mkdir -p ~/.config/inkscape
-cp -r eggbot_extension/templates ~/.config/inkscape
-cp -r eggbot_extension/extensions ~/.config/inkscape
+# Assuming default paths for extensions and templates
+mkdir -p ~/.config/inkscape/extensions ~/.config/inkscape/templates
+cp -r eggbot_extension/extensions/* ~/.config/inkscape/extensions/
+cp -r eggbot_extension/templates/* ~/.config/inkscape/templates/
 ```
 
 ### Dependencies
