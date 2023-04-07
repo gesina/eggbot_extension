@@ -107,7 +107,7 @@ For a full introduction, please visit:
   www.evilmadscientist.com/go/hershey</label>
 </page>
 
-<page name="info" gui-text="Credits">
+<page name="credits" gui-text="Credits">
 <label xml:space="preserve">
 The classic fonts included -- those without the "EMS"
 prefix -- are derived from work by Dr. A. V. Hershey,
