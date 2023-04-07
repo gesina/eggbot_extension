@@ -4,7 +4,7 @@
     <id>command.eggbot.contributed.eggbot_pptb</id>
     <dependency type="extension">org.inkscape.output.svg.inkscape</dependency>
     <dependency type="executable" location="extensions">eggbot_pptb.py</dependency>
-    <dependency type="executable" location="extensions">inkex</dependency>       <dependency type="executable" location="extensions">simplestyle.py</dependency>
+    <dependency type="executable" location="extensions">inkex</dependency>
     <label xml:space="preserve">
 This extension is intended for use after
 running the Inkscape "Trace Bitmap" tool
