@@ -303,7 +303,7 @@ class Map( inkex.Effect ):
 				pass
 
 			# First apply the current matrix transform to this node's transform
-			matNew = (inkex.Transform( matCurrent ) *  inkex.Transform( node.get( "transform" ) )).matrix
+			matNew = (inkex.Transform( matCurrent ) @  inkex.Transform( node.get( "transform" ) )).matrix
 
 			if node.tag == inkex.addNS( 'g', 'svg' ) or node.tag == 'g':
 
@@ -336,7 +336,7 @@ class Map( inkex.Effect ):
 					y = float( node.get( 'y', '0' ) )
 					# Note: the transform has already been applied
 					if ( x != 0 ) or (y != 0 ):
-						matNew2 = (inkex.Transform( matNew ) * inkex.Transform( 'translate(%f,%f)' % (x,y) )).matrix
+						matNew2 = (inkex.Transform( matNew ) @ inkex.Transform( 'translate(%f,%f)' % (x,y) )).matrix
 					else:
 						matNew2 = matNew
 					v = node.get( 'visibility', v )
@@ -581,7 +581,7 @@ class Map( inkex.Effect ):
 				if parent_transform is None:
 					return tr
 				else:
-					return ( inkex.Transform(parent_transform) * inkex.Transform(tr) ).matrix
+					return ( inkex.Transform(parent_transform) @ inkex.Transform(tr) ).matrix
 		else:
 			return self.docTransform
 

@@ -782,7 +782,7 @@ class Eggbot_Hatch( inkex.Effect ):
 				pass
 
 			# first apply the current matrix transform to this node's tranform
-			matNew = ( Transform(matCurrent) * Transform( node.get( "transform" ) ) ).matrix
+			matNew = ( Transform(matCurrent) @ Transform( node.get( "transform" ) ) ).matrix
 				
 			if node.tag == inkex.addNS( 'g', 'svg' ) or node.tag == 'g':
 				self.recursivelyTraverseSvg( node, matNew, parent_visibility=v )
@@ -814,7 +814,7 @@ class Eggbot_Hatch( inkex.Effect ):
 					y = float( node.get( 'y', '0' ) )
 					# Note: the transform has already been applied
 					if ( x != 0 ) or ( y != 0 ):
-						matNew2 = ( Transform(matNew) * Transform( 'translate(%f,%f)' % (x,y) ) ).matrix
+						matNew2 = ( Transform(matNew) @ Transform( 'translate(%f,%f)' % (x,y) ) ).matrix
 					else:
 						matNew2 = matNew
 					v = node.get( 'visibility', v )
