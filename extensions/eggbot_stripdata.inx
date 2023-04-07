@@ -4,7 +4,7 @@
   <id>command.evilmadscience.eggbot_stripdata1.eggbot</id>
   <dependency type="extension">org.inkscape.output.svg.inkscape</dependency>
   <dependency type="executable" location="extensions">eggbot_stripdata.py</dependency>
-  <dependency type="executable" location="extensions">inkex.py</dependency>
+  <dependency type="executable" location="extensions">inkex</dependency>
   <effect needs-live-preview="false" needs-document="false">
 		<object-type>all</object-type>
 	<effects-menu>

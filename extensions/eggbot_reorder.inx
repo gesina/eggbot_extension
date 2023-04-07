@@ -4,7 +4,7 @@
   <id>command.evilmadscience.eggbot_reorder2.eggbot</id>
   <dependency type="extension">org.inkscape.output.svg.inkscape</dependency>
   <dependency type="executable" location="extensions">eggbot_reorder.py</dependency>
-  <dependency type="executable" location="extensions">inkex.py</dependency>
+  <dependency type="executable" location="extensions">inkex</dependency>
   <!-- Written by Matthew Beckler for the Egg-Bot project. Email questions and comments to matthew at mbeckler dot org -->
 
 	  <label xml:space="preserve">

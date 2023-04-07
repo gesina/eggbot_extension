@@ -4,7 +4,7 @@
   <id>command.eggbot.contributed.stretch</id>
   <dependency type="extension">org.inkscape.output.svg.inkscape</dependency>
   <dependency type="executable" location="extensions">eggbot_stretch.py</dependency>
-  <dependency type="executable" location="extensions">inkex.py</dependency>
+  <dependency type="executable" location="extensions">inkex</dependency>
   <label xml:space="preserve">
 This extension will horizontally stretch your drawing.  The
 amount of stretch increases towards the poles of your egg

@@ -4,7 +4,7 @@
   <id>command.eggbot.contributed.eggbot_spiraltext101</id>
   <dependency type="executable" location="extensions">hersheydata.py</dependency>
   <dependency type="executable" location="extensions">eggbot_spiraltext.py</dependency>
-  <dependency type="executable" location="extensions">inkex.py</dependency>
+  <dependency type="executable" location="extensions">inkex</dependency>
   <param name="tab" type="notebook">
     <page name="splash" gui-text="Render Text">
       <label>

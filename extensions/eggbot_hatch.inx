@@ -4,7 +4,7 @@
   <id>command.eggbot.hatch.revb6</id>
   <dependency type="extension">org.inkscape.output.svg.inkscape</dependency>
   <dependency type="executable" location="extensions">eggbot_hatch.py</dependency>
-  <dependency type="executable" location="extensions">inkex.py</dependency>
+  <dependency type="executable" location="extensions">inkex</dependency>
   <dependency type="executable" location="extensions">plot_utils.py</dependency>
 
 <param name="tab" type="notebook">

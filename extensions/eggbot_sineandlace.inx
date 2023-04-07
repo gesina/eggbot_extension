@@ -3,7 +3,7 @@
   <name>Sine and Lace</name>
   <id>command.experiment.sineandlace</id>
   <dependency type="executable" location="extensions">eggbot_sineandlace.py</dependency>
-  <dependency type="executable" location="extensions">inkex.py</dependency>
+  <dependency type="executable" location="extensions">inkex</dependency>
 
 <param name="tab" type="notebook">
   <page name="splash" gui-text="Sine and Lace">

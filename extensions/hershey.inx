@@ -5,7 +5,7 @@
   <!-- Version 2.2 November 28, 2017 -->
   <dependency type="executable" location="extensions">hershey.py</dependency>
   <dependency type="executable" location="extensions">hersheydata.py</dependency>
-  <dependency type="executable" location="extensions">inkex.py</dependency>
+  <dependency type="executable" location="extensions">inkex</dependency>
 
   <param name="tab" type="notebook">
     <page name="splash" gui-text="Render Text">

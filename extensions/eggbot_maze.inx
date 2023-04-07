@@ -4,7 +4,7 @@
     <id>command.eggbot.contributed.eggmazing</id>
     <dependency type="extension">org.inkscape.output.svg.inkscape</dependency>
     <dependency type="executable" location="extensions">eggbot_maze.py</dependency>
-    <dependency type="executable" location="extensions">inkex.py</dependency>
+    <dependency type="executable" location="extensions">inkex</dependency>
     <param name="mazeSize" type="optiongroup" appearance="combo" gui-text="Maze dimensions (w x h):">
       <option value="SMALL">Small (32 x 6)</option>
       <option value="MEDIUM">Medium (64 x 12)</option>
